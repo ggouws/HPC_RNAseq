@@ -129,7 +129,7 @@
   to do this.
   <br>
 
-  
+  <br>
   <font size="4"><b>2.6) Running scripts on the HPC cluster</b></font>
   <br>
   
@@ -150,7 +150,9 @@
 
   The job will then receive the allocated resources, the task will run, and the appropriate output files generated.
   In the following workflow, since the output from a particular step is often the input for the next step, you need
-  to wait for each job to finish before submitting the next.
+  to wait for each job to finish before submitting the next. It is important to keep in mind that the resources
+  requested (based on the analysis of 90 samples) may not be suitable for your own analysis and may need to be 
+  changed. Again, the NEOF Bioinformatics Team can assist and provide help in setting these in the scripts.
 
 
   <br>
