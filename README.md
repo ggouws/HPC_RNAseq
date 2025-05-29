@@ -54,8 +54,8 @@
   [Please see the university IT pages for details on how to connect to the VPN.](https://students.sheffield.ac.uk/it-services/vpn)
 
   Once connected to the VPN you also need to connect to the HPC using a secure shell (SSH)
-  connection. This can be achieved using the command line on your system or a software package
-  such as [MobaXterm](https://mobaxterm.mobatek.net/).
+  connection. This can be achieved using the command line on your system (the Mac Terminal or Windows 
+  PowerShell) or a software package such as [MobaXterm](https://mobaxterm.mobatek.net/).
 
   [See the university pages for guidance on how to connect to the VPN](https://docs.hpc.shef.ac.uk/en/latest/hpc/index.html).
 
@@ -76,14 +76,14 @@
   ```
   [<user>@bessemer-node001 ~]$
   ```
-  ...where \<user\> is your The University of Sheffield (TUoS) IT username.
+  ...where \<user\> is your University of Sheffield (UoS) IT username.
 
   
   <br>
   <font size="4"><b>2.3) Load the Genomics Software Repository</b></font>
   <br>
   The Genomics Software Repository contains several pre-loaded pieces of software
-  useful for a range of genomics-based analyses, including this one.
+  and environments useful for a range of genomics-based analyses, including this one.
   
   Type:
   ```
@@ -110,7 +110,7 @@
   <br>
   <font size="4"><b>2.4) Set up your conda profile</b></font>
   <br>
-  If you have never run conda before on the Bessemer you might have to initialise your conda, to do this type:
+  If you have never run conda before on the Bessemer, you might have to initialise your conda. To do this type:
   
   ```
   conda init bash
@@ -119,7 +119,15 @@
   You will then be asked to reopen your current shell. Log out and then back into Bessemer and then continue. 
   <br>
   
-  <font size="4"><b>2.5) Running scripts on the HPC cluster</b></font>
+  <br>
+  <font size="4"><b>2.5) Accessing the molecolb priority queue/partition</b></font>
+  <br>
+  These scripts are written to launch the jobs using the _molecolb_ priority queue/partition. Contact one of the
+  NEOF Bioinformatics Team to check whether you have or to grant you access.
+  <br>
+
+  
+  <font size="4"><b>2.6) Running scripts on the HPC cluster</b></font>
   <br>
   
   To add our job to the job scheduler, we would submit the shell scripts using 'qsub'
@@ -127,7 +135,7 @@
 
   ```
   ## EXAMPLE, DON'T RUN
-  qsub scripts/example_script.sh
+  sbatch scripts/example_script.sh
   ```
 
   We could then view the job that we have submitted to the job queue using 'squeue'.
