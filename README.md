@@ -122,19 +122,22 @@
   <br>
   <font size="4"><b>2.5) Accessing the molecolb priority queue/partition</b></font>
   <br>
+  
   These scripts are written to launch the jobs using the _molecolb_ priority queue/partition. Contact one of the
-  NEOF Bioinformatics Team to check whether you have or to grant you access.
+  NEOF Bioinformatics Team to check whether you have or to grant you access. You could also use the general 
+  *sheffield* partition. One of the team will gladly give you instructions for modifying the submission scripts
+  to do this.
   <br>
 
   
   <font size="4"><b>2.6) Running scripts on the HPC cluster</b></font>
   <br>
   
-  To add our job to the job scheduler, we would submit the shell scripts using 'qsub'
-  (don't do this its simply an example).
+  To add our job to the job scheduler, we would submit the shell scripts using 'sbatch'
+  (don't do this; it's simply an example).
 
   ```
-  ## EXAMPLE, DON'T RUN
+  ## EXAMPLE - DON'T RUN
   sbatch scripts/example_script.sh
   ```
 
