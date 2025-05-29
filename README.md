@@ -6,22 +6,23 @@
     style="left; margin-right: 10px;" />
 <br>
 <br>
-## SNPs discovery for Fluidigm
+## Rudimentary RNAseq pipeline
 <br>
 <font size="4">
 <details><summary><font size="6"><b>1) About, credits, and other information</b></font></summary>
   <br>
   <br>
 	
-  This guide is for generating the files you need to submit to design primers for SNP typing on the Fluidigm system. 
+  This pipeline is set up to perform the analysis of RNAseq data using standard tools, as introduced in the NEOF
+  [RNAseq, differential gene expression and pathway analysis workshop](hyperlink). 
 
-  It assumes you have a reference genome and short read Illumina sequencing data for aligning and calling SNPs for 
-  3 or more individuals (e.g. WGR or similar).
+  The pipeline relies on you having short-read Illumina transcriptomic data for your samples, and access to a 
+  published or publically-available reference genome or transcriptome.
 
-  Whilst this protocol has been written for use with The University of Sheffield's
-  [BESSEMER](https://docs.hpc.shef.ac.uk/en/latest/bessemer/index.html) system,
-  the below should be applicable to any GNU/Linux based HPC system, with
-  appropriate modification.
+  This protocol has been written for use with The University of Sheffield's
+  [BESSEMER](https://docs.hpc.shef.ac.uk/en/latest/bessemer/index.html) HPC system, but should be applicable to 
+  any GNU/Linux based HPC system, with appropriate softwareftware installations and modification. Your mileage 
+  may vary.
 
   Code which the user (that's you) must run is highlighted in a code block like this:
   ```
@@ -38,7 +39,7 @@
 
   '/home/user/a_file_path'
   <br><br>
- Contact: Katy Maher //  kathryn.maher@sheffield.ac.uk
+ Contact: Gavin Gouws //  g.gouws@sheffield.ac.uk
   </details>
 <br>
 <details><summary><font size="6"><b>2) Getting started on the HPC.</b></font></summary>
