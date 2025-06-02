@@ -16,7 +16,7 @@
   This pipeline is set up to perform the analysis of RNAseq data using standard tools, as introduced in the NEOF
   [RNAseq, differential gene expression and pathway analysis workshop](hyperlink). 
 
-  This pipeline draws heavily on an approach and workflow developed for the above workshop by Katy Maher, Helen 
+  This pipeline follows closely the approach and workflow developed for the above workshop by Katy Maher, Helen 
   Hipperson, Ewan Harney, Steve Paterson, Bert Overduin, Matthew Gemmell and Xuan Liu. It also relies substantially 
   on scripts developed by Katy Maher. 
 
