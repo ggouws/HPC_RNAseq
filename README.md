@@ -6,7 +6,7 @@
     style="left; margin-right: 10px;" />
 <br>
 <br>
-## Rudimentary RNAseq pipeline
+## Rudimentary RNAseq pipeline [WORK IN PROGRESS]
 <br>
 <font size="4">
 <details><summary><font size="6"><b>1) About, credits, and other information</b></font></summary>
@@ -18,10 +18,10 @@
 
   This pipeline follows closely the approach and workflow developed for the above workshop by Katy Maher, Helen 
   Hipperson, Ewan Harney, Steve Paterson, Bert Overduin, Matthew Gemmell and Xuan Liu. It also relies substantially 
-  on scripts developed by Katy Maher. 
+  on scripts developed by Katy Maher. Use and referencing of this pipeline implicitly acknowledges these contributions.
 
   The pipeline relies on you having short-read Illumina transcriptomic data for your samples, and access to a 
-  published or publically-available reference genome or transcriptome.
+  published or publically-available reference genome or transcriptome with some level of annotation.
 
   This protocol has been written for use with The University of Sheffield's
   [BESSEMER](https://docs.hpc.shef.ac.uk/en/latest/bessemer/index.html) HPC system, but should be applicable to 
