@@ -283,10 +283,10 @@
   <br>
   
   If the reference genome or transcriptome you intend to use is available on NCBI, we will use the 
-  '01_reference_genome.sh' script to download it. This script creates a directory ('reference') in
+  '01_reference.sh' script to download it. This script creates a directory ('reference') in
   '/fastdata/$USER/my_project' in which to place the reference genome/transcriptome, uses the 
   NCBI-datasets tool to download it, unpacks the downloaded 'zip' file and tidies the output, 
-  leaving the genome/transcriptome ('.fna' or 'fasta' file) and the annotation file ('.gff').
+  leaving the genome/transcriptome ('.fna' or 'fasta' file) and the annotation ('.gff') file.
   <br>
 
   Remember that all scripts are launched from and work is done in out primary working directory 
@@ -297,15 +297,20 @@
 cd /fastdata/$USER/my_project
 ```
 
-  
-  This script downloads your genome and then indexes it using [bwa index](https://bio-bwa.sourceforge.net/bwa.shtml) ready for aligning your data later.
-    <br><br>
-  To download your genome, submit the '01_download_geome.sh' script as shown below. First remember to navigate to your '/fastdata/$USER/my_project' directory
+  To run this script, we will supply the following command-line argument:
+  - the NCBI-datasets download link for your genome/transcriptome (-L)
   <br><br>
-  <b>The command line arguments you must supply are:</b><br>
-  - the download link for your genome (-w)
-  - the file name for your genome (-g)
-  <br><br>
+  This is available by following the "datasets" tab (the second tab) on the NCBI genome page of the record or
+  accession that you are interested in. The command-line query can then be copied from the pop-up window and
+  pasted after the '-L' flag in the job submission as below.
+
+<img src="images/datasets.png"
+     alt="Example of NCBI datasets link"
+     style="left; margin-right: 10px;" />
+
+  you are interested in from the
+
+
   
   ``` 
  qsub scripts/01_download_genome.sh \
