@@ -18,7 +18,7 @@
 
   This pipeline closley follows the approach and workflow developed for the above workshop by Katy Maher, Helen 
   Hipperson, Ewan Harney, Steve Paterson, Bert Overduin, Matthew Gemmell and Xuan Liu. It also relies substantially 
-  on scripts developed by Katy Maher. Use and referencing of this pipeline implicitly acknowledges these contributions.
+  on scripts developed by Katy Maher. Use and referencing of this repository implicitly acknowledges these contributions.
 
   The pipeline relies on you having short-read Illumina transcriptomic data for your samples, and access to a 
   published or publically-available reference genome or transcriptome with some level of annotation.
@@ -231,26 +231,18 @@
   # The source is an example; the precise location will be provided
   ```
   
-  You could also download the data directly to your 'raw_data' folder, using the link that CGR provide. This 
-  should be a 'wget' command, which you can copy, paste and execute. Please be sure that you download the 
-  raw data. Links will be provided to download trimmed data, but since you will be doing your own QC, you'll have
-  greater flexibility when you have access to the raw data.
-  
-  ```
-  cd /fastdata/$USER/my_project/raw_data/
-  # Copy paste and execute the wget command (this is just an example below)
-  wget -r --cut-dirs=2 -np -nH -R "index.html*" https://cgr.liv.ac.uk/illum/example
-  ```
+  If you have downloaded your (or other) data to your personal computer, you'll need to transfer this to the HPC. 
+  You can download the data generated through NEOF using the links ('wget' links) and resources that CGR provide. 
+  Please be sure that you download the raw data. Links will be provided to download trimmed data, but since you 
+  will be doing your own QC, you'll have greater flexibility when you have access to the raw data. To transfer data 
+  to the HPC, you can use a file transfer protocol, such as 'scp', the upload feature in MobaXTerm or a tool such
+  as [FileZilla](https://filezilla-project.org/). Be sure that you upload the data to '/fastdata/$USER/my_project/raw_data'.
 
-  If you have downloaded your (or other) data onto your personal computer, you'll need to transfer this to the HPC.
-  You can use a file transfer protocol, such as 'scp', the upload feature in MobaXTerm or 
-  or a tool such as [FileZilla](https://filezilla-project.org/). Be sure that you upload the data to 
-  '/fastdata/$USER/my_project/raw_data'.
-  
+
   Run 'ls' on your 'raw_data' folder and you should see something like the following
   
   ```
-  ls raw_data
+  ls /fastdata/$USER/my_project_raw_data
   # sample1_R1_001.fq.gz
   # sample1_R2_001.fq.gz
   # sample2_R1_001.fq.gz
