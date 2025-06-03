@@ -306,16 +306,12 @@ cd /fastdata/$USER/my_project
 
 <img src="images/datasets.png"
      alt="Example of NCBI datasets link"
-     style="left; margin-right: 10px;" />
+     style="left; margin-right: 5px;" />
 
-  you are interested in from the
-
-
-  
+    
   ``` 
- qsub scripts/01_download_genome.sh \
- -w https://ftp.ncbi.nlm.nih.gov/genomes/all/GCA/017/639/245/GCA_017639245.1_MMon_1.0/GCA_017639245.1_MMon_1.0_genomic.fna.gz \
- -g GCA_017639245.1_MMon_1.0_genomic.fna.gz
+ sbatch scripts/01_reference.sh \
+ -L [Insert copied NCBI-datasets command-line query here]
   ```
  
  When the script has finished running you should have a genome and index files in your genome directory. 
