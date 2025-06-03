@@ -183,8 +183,8 @@
   <font size="4"><b>3.1) Create a working directory and load your data</b></font>
   <br>
   You should work in the directory '/fastdata' on BESSEMER as this allows shared access to your files, scripts,
-  and output and error logs, all of which are useful for troubleshooting.
-
+  and output and error logs, all of which are useful for troubleshooting.<br>
+  <br>
 
   Check if you already have a directory in '/fastdata' by running the command exactly as it appears below.
 
@@ -213,33 +213,37 @@
   <br>
   <font size="4"><b>3.2) Required data inputs</b></font>
   <br>
-  For this workflow, you need to provide the raw, paired-end DNA sequence data
-  and also a reference genome to align this data to.
+  For this workflow, you'll need to provide your raw, paired-end transcriptomic/RNA sequence data and a reference
+  genome or transcriptome to align this data to. You'll also need the annotation data/files for your genome or
+  transcriptome.
   <br>
   <br>
   <font size="4"><b>3.3) Load required data onto the HPC</b></font>
   <br>
-  There are a couple of ways to get access to your data. If you have generated the data/genome
-  yourself/through NEOF you will need to copy this over to your raw data folder. 
-  
-  If this is the case you need to contact NEOF staff and they will be able to tell you 
-  where to copy this data from.
-
-  If, for example, your data directory was called 'NEOF_project_010123' and the genome directory 
-  'genome_010123', then you would copy it onto your raw_data and genome directories with the following:
-  
+  If you have generated the data through NEOF, the NEOF team will download and archive your data as soon as 
+  it is released by the Centre for Genomic Research (CGR) at the University of Liverpool. You will need to copy your 
+  data into your 'raw_data' folder. The command will be similar to that below - a member of the NEOF Bioinformatics
+  Team will give you the precise location of your data for copying:
   ```
-  cp -r /fastdata/bo4kma_shared/NEOF_project_010122/* /fastdata/$USER/my_project/raw_data/
-  cp -r /fastdata/bo4kma_shared/genome_010123/* /fastdata/$USER/my_project/genome/
+  cp -r /fastdata/bi1gg_shared/your_project_data/* /fastdata/$USER/my_project/raw_data/
+  # The data source is an example; the precise location will be provided
+    ```
+
+  You could also download the data directly to your 'raw_data' folder, using the link that CGR provide. This 
+  should be a 'wget' command, which you can copy, paste and execute. Please be sure that you download the 
+  raw data. Links will be provided to download trimmed data, but since you will be doing your own QC, you'll have
+  greater flexibility when you have access to the raw data.
   ```
+  cd /fastdata/$USER/my_project/raw_data/
+  # Copy paste and execute the wget command (this is just an example below)
+  wget -r --cut-dirs=2 -np -nH -R "index.html*" https://cgr.liv.ac.uk/illum/...
+    ```
 
-  Alternatively, to copy data from your personal computer onto the HPC you need to use a file transfer
-  application such as 'scp' (advanced), MobaXterm, or [FileZilla](https://filezilla-project.org/).
-  Ensure to copy the data into your '/fastdata/<user>my_project/raw_data' folder and genome into 
-  '/fastdata/<user>my_project/genome' folder.
+  If you have downloaded your (or other) data onto your personal computer, you'll need to transfer this to the HPC.
+  You can use a file transfer protocol, such as 'scp', the upload feature in MobaXTerm or 
+  or a tool such as [FileZilla](https://filezilla-project.org/). Be sure that you upload the data to 
+  '/fastdata/$USER/my_project/raw_data'.
   
-  Another option is to download the data from a data repository such as the [NCBI SRA](https://www.ncbi.nlm.nih.gov/sra). More on this below.
-
   Run 'ls' on your 'raw_data' folder and you should see something like the following
   
   ```
@@ -248,13 +252,6 @@
   # sample1_R2_001.fq.gz
   # sample2_R1_001.fq.gz
   # sample2_R2_001.fq.gz
-  ```
-  
-  Run 'ls' on your 'genome' folder and you should see something like the following
-  
-  ```
-  ls genome
-  # genome.fasta
   ```
   
   Make sure that you have removed any `tar.gz` files and any files labelled unclassified, e.g. `Unclassified_R1` `Unclassified_R2`. 
