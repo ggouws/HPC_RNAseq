@@ -249,43 +249,55 @@
   # sample2_R2_001.fq.gz
   ```
   
-  Make sure that you have removed any `tar.gz` files and any files labelled unclassified, e.g. `Unclassified_R1` `Unclassified_R2`. 
+  Make sure that you have removed any 'tar.gz' or 'zip' files and any files that contain improperly demultiplexed data. 
+  These may be labelled 'unclassified' (e.g., 'Unclassified_R1', 'Unclassified_R2') or be indicated as 'R0' reads. 
   <br>
 
   The workflow assumes that the '/fastdata/<user>my_project/raw_data' directory contains sequence data that is:
 
   * Paired (two files per biological sample)
-
   * Demultiplexed
-
   * FASTQ format
+  * In the compressed '.gz' format (optional, but recommended)
 
-  * (optional, but recommended) in the compressed .gz format
-
-  <br>
   <br>
   <b><font size="4">3.4) Copy the analysis scripts</b></font>
   <br>
   Clone this GitHub repository and then copy the 'scripts' folder into your '/fastdata/$USER/my_project'
- folder. You can then delete the GitHub download.
+  folder. You can then delete the GitHub download.
 
   ```
   git clone https://github.com/ggouws/HPC_RNAseq
   cp -r HPC_RNAseq/scripts /fastdata/$USER/my_project/
   rm -rf HPC_RNAseq
   ```
-   </details>
+  </details>
   <br>
  
- <details><summary><font size="6"><b>4)  Download reference genome</b></font></summary>
-  <br>
+ <details><summary><font size="6"><b>4)  Download reference genome or transcriptome</b></font></summary>
+ <br>
   <br>
   
-  Now we are set up we are ready to start preparing your data. The first thing you want to do is to add your reference genome. 
+  Now that we have set up the HPC and have our data, we can start preparing and analysing your data. The 
+  first task is to source and add your reference genome or transcriptome. 
   <br>
-  If you have not generated the genome file yourself and it is available on a public repository you can use the 
-  '01_download_geome.sh' script. 
+  
+  If the reference genome or transcriptome you intend to use is available on NCBI, we will use the 
+  '01_reference_genome.sh' script to download it. This script creates a directory ('reference') in
+  '/fastdata/$USER/my_project' in which to place the reference genome/transcriptome, uses the 
+  NCBI-datasets tool to download it, unpacks the downloaded 'zip' file and tidies the output, 
+  leaving the genome/transcriptome ('.fna' or 'fasta' file) and the annotation file ('.gff').
   <br>
+
+  Remember that all scripts are launched from and work is done in out primary working directory 
+  ('/fastdata/$USER/my_project'), so you'll need to navigate there when logging on to Bessemer and prior
+  to launching any scripts.
+
+  ```
+cd /fastdata/$USER/my_project
+```
+
+  
   This script downloads your genome and then indexes it using [bwa index](https://bio-bwa.sourceforge.net/bwa.shtml) ready for aligning your data later.
     <br><br>
   To download your genome, submit the '01_download_geome.sh' script as shown below. First remember to navigate to your '/fastdata/$USER/my_project' directory
