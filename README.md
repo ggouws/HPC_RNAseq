@@ -237,7 +237,7 @@
   ```
   cd /fastdata/$USER/my_project/raw_data/
   # Copy paste and execute the wget command (this is just an example below)
-  wget -r --cut-dirs=2 -np -nH -R "index.html*" https://cgr.liv.ac.uk/illum/...
+  wget -r --cut-dirs=2 -np -nH -R "index.html*" https://cgr.liv.ac.uk/illum/example
     ```
 
   If you have downloaded your (or other) data onto your personal computer, you'll need to transfer this to the HPC.
