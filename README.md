@@ -282,7 +282,7 @@
   first task is to source and add your reference genome or transcriptome. 
   <br>
 
-  Remember that all scripts are launched from and work is done in out primary working directory 
+  Remember that all scripts are launched from and work is done in our primary working directory 
   ('/fastdata/$USER/my_project'), so you'll need to navigate there when logging on to Bessemer and prior
   to launching any scripts.
 
