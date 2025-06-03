@@ -166,6 +166,7 @@
   As well as running the standardised scripts there are some parameters which will be unique to your project or data. 
   For example, these might be your file extensions, the name of your reference genome or the filtering parameters you
   want to implement for QC.<br>
+  <br>
 
   To run a script with these extra parameters (termed 'arguments') we supply them on the command line with a 'flag'.
   For example, you might supply your genome file name to a script using the '-g' flag as
@@ -183,6 +184,7 @@
   <br>
   You should work in the directory '/fastdata' on BESSEMER as this allows shared access to your files, scripts,
   and output and error logs, all of which are useful for troubleshooting.
+
 
   Check if you already have a directory in '/fastdata' by running the command exactly as it appears below.
 
