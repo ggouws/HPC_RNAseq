@@ -225,6 +225,7 @@
   data into your 'raw_data' folder. The command will be similar to that below - a member of the NEOF Bioinformatics
   Team will give you the precise location of your data for copying:<br>
   <br>
+
   ```
   cp -r /fastdata/bi1gg_shared/your_project_data/* /fastdata/$USER/my_project/raw_data/
   # The source is an example; the precise location will be provided
