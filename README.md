@@ -272,12 +272,13 @@
   <br>
   <b><font size="4">3.4) Copy the analysis scripts</b></font>
   <br>
-  Download the scripts from this github repository and then copy them into your scripts folder. You can then delete the github download.
+  Clone this GitHub repository and then copy the 'scripts' folder into your '/fastdata/$USER/my_project'
+ folder. You can then delete the GitHub download.
 
   ```
-  git clone "https://github.com/ewan-harney/SNPs-discovery-for-Fluidigm"
-  cp SNPs-discovery-for-Fluidigm/scripts/* /fastdata/$USER/my_project/scripts
-  rm -rf SNPs-discovery-for-Fluidigm
+  git clone https://github.com/ggouws/HPC_RNAseq
+  cp -r HPC_RNAseq/scripts /fastdata/$USER/my_project/
+  rm -rf HPC_RNAseq
   ```
    </details>
   <br>
