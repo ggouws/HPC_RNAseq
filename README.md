@@ -16,30 +16,32 @@
   This pipeline is set up to perform the analysis of RNAseq data using standard tools, as introduced in the NEOF
   [RNAseq, differential gene expression and pathway analysis workshop](hyperlink). 
 
-  This pipeline follows closely the approach and workflow developed for the above workshop by Katy Maher, Helen 
+  This pipeline closley follows the approach and workflow developed for the above workshop by Katy Maher, Helen 
   Hipperson, Ewan Harney, Steve Paterson, Bert Overduin, Matthew Gemmell and Xuan Liu. It also relies substantially 
   on scripts developed by Katy Maher. Use and referencing of this pipeline implicitly acknowledges these contributions.
 
   The pipeline relies on you having short-read Illumina transcriptomic data for your samples, and access to a 
   published or publically-available reference genome or transcriptome with some level of annotation.
 
-  This protocol has been written for use with The University of Sheffield's
+  This protocol has been written for use with the University of Sheffield's
   [BESSEMER](https://docs.hpc.shef.ac.uk/en/latest/bessemer/index.html) HPC system, but should be applicable to 
-  any GNU/Linux based HPC system, with appropriate softwareftware installations and modification. Your mileage 
+  any GNU/Linux-based HPC system, with appropriate software installations and modification. Your mileage 
   may vary.
 
   Code which the user (that's you) must run is highlighted in a code block like this:
   ```
   I am code - you must run me
   ```
-  Sometimes the desired output from a command is included in the code block as a comment.
+  Sometimes the desired output from a command or additional information about the command is included in the code
+  block as a comment.
+  
   For example:
   ```
   Running this command
   # Should produce this output
   ```
 
-  Filepaths within normal text are within single quote marks, like this:
+  File-paths within normal text are within single quote marks, like this:
 
   '/home/user/a_file_path'
   <br><br>
@@ -69,7 +71,7 @@
   Once you have successfully logged into BESSEMER, you need to access a worker node:
 
   ```
-  srun --pty bash -i
+  srun --pty bash -l
   ```
   You should see that the command prompt has changed from
 
@@ -87,7 +89,7 @@
   <font size="4"><b>2.3) Load the Genomics Software Repository</b></font>
   <br>
   The Genomics Software Repository contains several pre-loaded pieces of software
-  and environments useful for a range of genomics-based analyses, including this one.
+  and environments useful for a range of genomics analyses, including this one.
   
   Type:
   ```
@@ -127,9 +129,9 @@
   <font size="4"><b>2.5) Accessing the molecolb priority queue/partition</b></font>
   <br>
   
-  These scripts are written to launch the jobs using the _molecolb_ priority queue/partition. Contact one of the
+  These scripts are written to launch the jobs using the ___molecolb___ priority queue/partition. Contact one of the
   NEOF Bioinformatics Team to check whether you have or to grant you access. You could also use the general 
-  *sheffield* partition. One of the team will gladly give you instructions for modifying the submission scripts
+  ***sheffield*** partition. One of the team will gladly give you instructions for modifying the submission scripts
   to do this.
   <br>
 
@@ -149,21 +151,21 @@
 
   ```
   squeue --me
-
   ```
 
-  The job will then receive the allocated resources, the task will run, and the appropriate output files generated.
-  In the following workflow, since the output from a particular step is often the input for the next step, you need
-  to wait for each job to finish before submitting the next. It is important to keep in mind that the resources
-  requested (based on the analysis of 90 samples) may not be suitable for your own analysis and may need to be 
+  The job will then receive the allocated resources, the task will run, and the appropriate output files generated 
+  (inlcuding output and error logs). In the following workflow, the output from a particular step is the input for 
+  the next step. You'll need to wait for each job to finish before submitting the next. It is important to keep in 
+  mind that the resources requested in the scripts may not be suitable for your own analysis and may need to be 
   changed. Again, the NEOF Bioinformatics Team can assist and provide help in setting these in the scripts.
 
 
   <br>
   <font size="4"><b>2.6) Passing command line arguments to a script</b></font>
   <br>
-  As well as running the standardised scripts there are some parameters which will be unique to you, or
-  your project. For example, these might be your genome name.<br>
+  As well as running the standardised scripts there are some parameters which will be unique to your project or data. 
+  For example, these might be your file extensions, the name of your reference genome or the filtering parameters you
+  want to implement for QC.<br>
 
   To run a script with these extra parameters (termed 'arguments') we supply them on the command line with a 'flag'.
   For example, you might supply your genome file name to a script using the '-g' flag as
@@ -179,8 +181,8 @@
   <br>
   <font size="4"><b>3.1) Create a working directory and load your data</b></font>
   <br>
-  You should work in the directory '/fastdata' on BESSEMER as this allows shared access to your files
-  and commands, useful for troubleshooting.
+  You should work in the directory '/fastdata' on BESSEMER as this allows shared access to your files, scripts,
+  and output and error logs, all of which are useful for troubleshooting.
 
   Check if you already have a directory in '/fastdata' by running the command exactly as it appears below.
 
@@ -192,18 +194,19 @@
   ```
   ls: cannot access /fastdata/<user>: No such file or directory
   ```
-  Then you need to create a new folder in '/fastdata' using the command exactly as it appears below:
+  you'll need to create a new folder in '/fastdata' using the command exactly as it appears below:
 
   ```
   mkdir -m 0755 /fastdata/$USER
   ```
 
-  Create new subdirectories to keep your scripts and raw data organised:
+  You'll now need to create a new subdirectory in which you will do all your work. It is called 'my_project' in the
+  commands below, but you are welcome to name it as you see fit. You'll then need to create a subdirectory within 
+  'my_project', called 'raw_data' to receive your data. All other subirectories needed will be created when running
+  the scripts. Create this directory structure as follows:
   ```
   mkdir /fastdata/$USER/my_project
-  mkdir /fastdata/$USER/my_project/scripts
   mkdir /fastdata/$USER/my_project/raw_data
-  mkdir /fastdata/$USER/my_project/genome
   ```
   <br>
   <font size="4"><b>3.2) Required data inputs</b></font>
