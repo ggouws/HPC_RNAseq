@@ -281,13 +281,6 @@
   Now that we have set up the HPC and have our data, we can start preparing and analysing your data. The 
   first task is to source and add your reference genome or transcriptome. 
   <br>
-  
-  If the reference genome or transcriptome you intend to use is available on NCBI, we will use the 
-  '01_reference.sh' script to download it. This script creates a directory ('reference') in
-  '/fastdata/$USER/my_project' in which to place the reference genome/transcriptome, uses the 
-  NCBI-datasets tool to download it, unpacks the downloaded 'zip' file and tidies the output, 
-  leaving the genome/transcriptome ('.fna' or 'fasta' file) and the annotation ('.gff') file.
-  <br>
 
   Remember that all scripts are launched from and work is done in out primary working directory 
   ('/fastdata/$USER/my_project'), so you'll need to navigate there when logging on to Bessemer and prior
@@ -296,6 +289,13 @@
   ```
 cd /fastdata/$USER/my_project
 ```
+  
+  If the reference genome or transcriptome you intend to use is available on NCBI, we will use the 
+  '01_reference.sh' script to download it. This script creates a directory ('reference') in
+  '/fastdata/$USER/my_project' in which to place the reference genome/transcriptome, uses the 
+  NCBI-datasets tool to download it, unpacks the downloaded 'zip' file and tidies the output, 
+  leaving the genome/transcriptome ('.fna' or 'fasta' file) and the annotation ('.gff') file.
+  <br>
 
   To run this script, we will supply the following command-line argument:
   - the NCBI-datasets download link for your genome/transcriptome (-L)
@@ -314,17 +314,20 @@ cd /fastdata/$USER/my_project
  -L [Insert copied NCBI-datasets command-line query here]
   ```
  
- When the script has finished running you should have a genome and index files in your genome directory. 
+ When the script has finished running, the genome/transcriptome and annotation files will be in your 'reference'
+ directory. 
  
- <br>
- If you have added your genome to your genome folder manually you can index it by typing the following into the command line.
  
- <br><br>
-  
+ If you have downloaded your reference genome/transcriptome differently or have it downloaded to your
+ personal computer, you will need to transfer it to the HPC, using one of the approaches discussed above. You will
+ need to create a 'reference' directory first and to place your reference and annotation data in there. 
+ 
   ``` 
-  source ~/.bash_profile
-  bwa index genome/genome_name.fa
+  mkdir reference
   ```
+
+
+
  
  </details>
   <br>
