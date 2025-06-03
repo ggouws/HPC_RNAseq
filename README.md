@@ -229,7 +229,6 @@
   cp -r /fastdata/bi1gg_shared/your_project_data/* /fastdata/$USER/my_project/raw_data/
   # The source is an example; the precise location will be provided
   ```
-
   
   You could also download the data directly to your 'raw_data' folder, using the link that CGR provide. This 
   should be a 'wget' command, which you can copy, paste and execute. Please be sure that you download the 
