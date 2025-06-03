@@ -223,7 +223,7 @@
   If you have generated the data through NEOF, the NEOF team will download and archive your data as soon as 
   it is released by the Centre for Genomic Research (CGR) at the University of Liverpool. You will need to copy your 
   data into your 'raw_data' folder. The command will be similar to that below - a member of the NEOF Bioinformatics
-  Team will give you the precise location of your data for copying:
+  Team will give you the precise location of your data for copying:<br>
   ```
   cp -r /fastdata/bi1gg_shared/your_project_data/* /fastdata/$USER/my_project/raw_data/
   # The data source is an example; the precise location will be provided
