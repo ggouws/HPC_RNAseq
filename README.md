@@ -218,7 +218,7 @@
   transcriptome.
   <br>
   <br>
-  <font size="4"><b>3.3) Load required data onto the HPC</b></font>
+  <font size="4"><b>3.3) Load required RNA sequence data onto the HPC</b></font>
   <br>
   If you have generated the data through NEOF, the NEOF team will download and archive your data as soon as 
   it is released by the Centre for Genomic Research (CGR) at the University of Liverpool. You will need to copy your 
@@ -235,11 +235,12 @@
   should be a 'wget' command, which you can copy, paste and execute. Please be sure that you download the 
   raw data. Links will be provided to download trimmed data, but since you will be doing your own QC, you'll have
   greater flexibility when you have access to the raw data.
+  
   ```
   cd /fastdata/$USER/my_project/raw_data/
   # Copy paste and execute the wget command (this is just an example below)
   wget -r --cut-dirs=2 -np -nH -R "index.html*" https://cgr.liv.ac.uk/illum/example
-    ```
+  ```
 
   If you have downloaded your (or other) data onto your personal computer, you'll need to transfer this to the HPC.
   You can use a file transfer protocol, such as 'scp', the upload feature in MobaXTerm or 
