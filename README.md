@@ -311,7 +311,7 @@ cd /fastdata/$USER/my_project
     
   ``` 
  sbatch scripts/01_reference.sh \
- -L [Insert copied NCBI-datasets command-line query here]
+ -L ["Insert copied NCBI-datasets command-line query here within quotation marks"]
   ```
  
  When the script has finished running, the genome/transcriptome and annotation files will be in your 'reference'
@@ -320,7 +320,7 @@ cd /fastdata/$USER/my_project
  
  If you have downloaded your reference genome/transcriptome differently or have it downloaded to your
  personal computer, you will need to transfer it to the HPC, using one of the approaches discussed above. You will
- need to create a 'reference' directory first and to place your reference and annotation data in there. 
+ need to create a 'reference' directory first and be sure to place your reference and annotation data in there. 
  
   ``` 
   mkdir reference
