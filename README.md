@@ -468,7 +468,7 @@ If not, you can return to the Trimmomatic step, changing the parameters and repe
   <br>  
  
  We are now ready to map our cleaned reads to our reference genome or transcriptome. To do this, we will use 
- <HISAT2>(http://daehwankimlab.github.io/hisat2/manual/). HISAT2 is a fast and memory efficient alignment tool, and - 
+ (HISAT2)<http://daehwankimlab.github.io/hisat2/manual/>. HISAT2 is a fast and memory efficient alignment tool, and - 
  importantly for RNAseq work - it is a "splice aware" aligner. This means that it can map reads from transcriptomic 
  sequencing over the exon-intron junctions in a genome. Many common alignment tools are not "splice aware" and cannot
  accommodate these exon-intron junctions. As such, these tools will only be suitable for mapping our sequence reads
