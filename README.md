@@ -361,22 +361,22 @@ cd /fastdata/$USER/my_project
   
   <br>
 
-  Once the script has finished running, the fastQC output will be in a 'raw_fastqc' folder. The MultiQC reports will 
-  be placed in a folder called 'quality_reports', which you can download to view the contents in a browser. There will 
-  be two MultiQC plots, one for the R1 reads for all your samples ('Raw_data_R1_multiqc_report.html') and one for the
-  R2 reads (Raw_data_R2_multiqc_report.html). View and consider these reports when considering your strategy for cleaning 
-  (filtering and trimming) your data.
+Once the script has finished running, the fastQC output will be in a 'raw_fastqc' folder. The MultiQC reports will 
+be placed in a folder called 'quality_reports', which you can download to view the contents in a browser. There will 
+be two MultiQC plots, one for the R1 reads for all your samples ('Raw_data_R1_multiqc_report.html') and one for the
+R2 reads (Raw_data_R2_multiqc_report.html). View and consider these reports when considering your strategy for cleaning 
+(filtering and trimming) your data.
 
   
-  For most data sets, you'll likley see:
+For most data sets, you'll likely see:
 
 - The quality decreases towards the end of the reads
 - The R2 reads have poorer quality than the R1 reads
 - The read sizes have a range compared to all being one size. However, most of the reads are towards the long end of the range.
 
-  Generally, even if data is looking good we would carry out quality control to get rid of any poor data that is masked
-  by the very good data and to remove any adapter sequences. In the next step, we'll carry out quality control on our fastq files.
-   <br>
+Generally, even if data is looking good we would carry out quality control to get rid of any poor data that is masked
+by the very good data and to remove any adapter sequences. In the next step, we'll carry out quality control on our fastq files.
+<br>
 <br>
 <font size="4"><b>5.2) QC: Filtering and trimming</b></font>
 <br>
