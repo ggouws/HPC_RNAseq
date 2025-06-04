@@ -12,6 +12,8 @@
 <details><summary><font size="6"><b>1) About, credits, and other information</b></font></summary>
   <br>
   <br>
+  Compiled by: Gavin Gouws and Katy Maher, NERC Environmental Omics Facility, University of Sheffield.
+  
 	
   This pipeline is set up to perform the analysis of RNAseq data using standard tools, as introduced in the NEOF
   [RNAseq, differential gene expression and pathway analysis workshop](hyperlink). 
