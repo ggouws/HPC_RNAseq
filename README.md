@@ -332,9 +332,11 @@ cd /fastdata/$USER/my_project
 
  </details>
   <br>
- <details><summary><font size="6"><b>5)  Quality Assessment, Quality Control and data trimming</b></font></summary>
+ <details><summary><font size="6"><b>5)  Quality assessment, quality control and data trimming</b></font></summary>
   <br>
-  <br>    
+  <br>
+  <font size="4"><b>5.1) Raw data quality assessment</b></font>
+  <br>
  
   Our first analytical tasks are to investigate the quality of our sequence data and the fastq files, and then perform
   quality filtering and trimming, such that high quality data remain for mapping and quantifying.
