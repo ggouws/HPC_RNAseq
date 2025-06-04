@@ -437,8 +437,9 @@ evaluate how your data are filtered and then consider other parameters.
 <br>
 When the script has finished running the trimmed data will be in a 'trimmed' folder. Each sample will have now be represented by four files. There will 
 be paired R1 and R2 read files, for the R1 and R2 reads that remained paired after filtering and trimming, and unpaired R1 and R2 files for those R1 
-and R2 reads, where only one of the pair remained after filtering. For our analyses, we will use the reads that are still paired. 
+and R2 reads, where only one of the pair remained after filtering. For our analyses, we will use the reads that are still paired.<br> 
 
+<br>
 <br>
 <font size="4"><b>5.3) Trimmed data quality assessment</b></font>
 <br>
@@ -462,13 +463,22 @@ If not, you can return to the Trimmomatic step, changing the parameters and repe
   </details>
   <br>
   
- <details><summary><font size="6"><b>8) Align short reads to the reference genome</b></font></summary>
+ <details><summary><font size="6"><b>6) Align short reads to the reference genome/transcriptome</b></font></summary>
   <br>
   <br>  
  
- We are now ready to map our reads to our reference genome. To do this we will use BWA to align our trimmed sequences to our reference genome.
- <br>
- We have already indexed our genome when we downloaded it. You should have index files with the  extensions '.sa', '.pac', '.ann', '.amb' and '.bwt' that will be automatically detected and used in the mapping step below. 
+ We are now ready to map our cleaned reads to our reference genome or transcriptome. To do this, we will use 
+ <HISAT2>(http://daehwankimlab.github.io/hisat2/manual/). HISAT2 is a fast and memory efficient alignment tool, and - 
+ importantly for RNAseq work - it is a "splice aware" aligner. This means that it can map reads from transcriptomic 
+ sequencing over the exon-intron junctions in a genome. Many common alignment tools are not "splice aware" and cannot
+ accommodate these exon-intron junctions. As such, these tools will only be suitable for mapping our sequence reads
+ against a transcriptome (rather than a genome).<br>
+
+ 
+The script below will index the genome we downloaded earlier and will then map our paired and trimmed reads from
+Trimmomatic to the reference. 
+
+We have already indexed our genome when we downloaded it. You should have index files with the  extensions '.sa', '.pac', '.ann', '.amb' and '.bwt' that will be automatically detected and used in the mapping step below. 
  
  bwa mem is an alignment algorithm well suited to Illumina-length sequences. The default output is a SAM (Sequence Alignment Map format). 
  However, here we pipe the output to samtools, a program for writing, viewing and manipulating alignment files, to sort and generate a BAM format, a binary, compressed version of SAM format.
