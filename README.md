@@ -440,23 +440,26 @@ be paired R1 and R2 read files, for the R1 and R2 reads that remained paired aft
 and R2 reads, where only one of the pair remained after filtering. For our analyses, we will use the reads that are still paired. 
 
 </details>
- <br>
-   
- <details><summary><font size="6"><b>7)  Re-check quality</b></font></summary>
-  <br>
-  <br> 
+<br>
+<br>
+<font size="4"><b>5.3) Trimmed data quality assessment</b></font>
+<br>
+ 
+Now that we have run trimmomatic, we can check how successful our quality control has been but running fastQC and MultiQC again on the 
+cleaned data. Run the script below.<br>
+<br> 
 
-  Now we have run trimmomatic we can check how successful our quality control has been but running fastQC and MultiQC again. These 
-  can be found in the 'fastqc2' folder when the script has finished running.
-   <br><br>
-  
-   <br> 
+```   
+sbatch scripts/04_clean_fastqc.sh
+```   
+<br><br>
 
-  ```   
- qsub scripts/05_fastqc2.sh
-  ```   
-  <br><br>
-  If you are not satisfied with the quality or number of reads retained after filtering you can go back to the trimmomatic step and repeat the quality control but changing the parameters.
+When the script is finished running, the fastQC output and reports will be in a 'clean_fastqc' folder. The two MultiQC html reports
+(Clean_data_R1_multiqc_report.html and Clean_data_R2_multiqc-report) will be in the 'quality_reports' folder for you to 
+download and examine.
+
+If you are satisfied with the quality of your data and the amount of data (number of reads) retained, you can proceed with your analysis.
+If not, you can return to the Trimmomatic step, changing the parameters and repeating the quality control.
   
   </details>
   <br>
