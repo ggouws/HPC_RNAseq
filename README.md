@@ -377,29 +377,30 @@ cd /fastdata/$USER/my_project
   Generally, even if data is looking good we would carry out quality control to get rid of any poor data that is masked
   by the very good data and to remove any adapter sequences. In the next step, we'll carry out quality control on our fastq files.
    <br>
-   <br>
-  <font size="4"><b>5.2) QC: Filterting and trimming</b></font>
-  <br>
+<br>
+<font size="4"><b>5.2) QC: Filtering and trimming</b></font>
+<br>
   
-  Quality control generally comes in two forms:
+Quality control generally comes in two forms:
 
-  1. **Trimming**: This is directly cutting off bits of sequence. This is typical in the form of trimming off low quality bases from the end of reads and trimming off adapters at the start of reads.
-  2. **Filtering**: This occurs when entire reads are removed. A typical occurrence of this is when a read is too short as we do not want reads below a certain length.
+1. **Trimming**: This is directly cutting off bits of sequence. This is typical in the form of trimming off low quality bases from the end of reads and trimming off adapters at the start of reads.
+2. **Filtering**: This occurs when entire reads are removed. A typical occurrence of this is when a read is too short and we do not want reads below a certain length.
 
-  To carry this out, we will use [Trimmomatic](http://www.usadellab.org/cms/index.php?page=trimmomatic).
+To carry this out, we will use [Trimmomatic](http://www.usadellab.org/cms/index.php?page=trimmomatic).
 
   
-  <br>
-  To run Trimmomatic we will use the '03_trimmomatic.sh' script. This has many optional parameters you can use for filtering and trimming your data. 
-  By default this script assumes you have paired end data and the the quality is encoded using *phred33* (typical for most Illumina data).
-  <br>
-  <b>The command line arguments you must supply are:</b><br>
+<br>
+To run Trimmomatic we will use the '03_trimmomatic.sh' script. This has many optional parameters you can use for filtering and trimming your data. 
+By default this script assumes you have paired end data and the the quality is encoded using *phred33* (typical for most Illumina data).
+<br>
+
+<b>The command line arguments you must supply are:</b><br>
   
-  - the file extension for your forward reads (-F)
-  - the file extension for your reverse reads (-R)
+  - the file extension for your R1 reads (-F)
+  - the file extension for your R2 reads (-R)
   <br><br>
   
-  <b>Optionally, you can also supply:</b><br>
+<b>Optionally, you can also supply:</b><br>
   
   - parameters for ILLUMINACLIP (-K).
   - parameters for SLIDINGWINDOW (-S)
@@ -408,9 +409,9 @@ cd /fastdata/$USER/my_project
   - parameters for CROP (-C)
   - parameters for HEADCROP (-H)
   - parameters for MINLEN (-M) 
-  <br><br>
+<br><br>
 
-  More details of the optional parameters can be found below or in the [trimmomatic manual](http://www.usadellab.org/cms/index.php?page=trimmomatic)
+More details of the optional parameters can be found below or in the Trimmomatic [manual](http://www.usadellab.org/cms/index.php?page=trimmomatic)
   
   - ILLUMINACLIP: These settings are used to find and remove Illumina adapters. First, a fasta file of known adapter sequences is given, followed by the number of mismatches allowed between the adapter and read sequence and then thresholds for how accurate the alignment is between the adapter and read sequence. The fasta file of adapter sequences ('TruSeq3-PE-2.fa') is provided in your downloaded 'scripts' folder.
   - SLIDINGWINDOW: This specifies to scan the read quality over a 4 bp window, cutting when the average quality drops below the specified phred score.
@@ -420,10 +421,10 @@ cd /fastdata/$USER/my_project
   - HEADCROP: Cut the specified number of bases from the start of the read.
   - MINLEN: This specifies the minimum length of a read to keep; any reads shorter than the specified length are discarded.
     <br><br>
-  An example of how to run Trimmomatic can be found below. The parameters provided are fairly standard quality thresholds. You are welcome to try these,
+An example of how to run Trimmomatic can be found below. The parameters provided are fairly standard quality thresholds. You are welcome to try these,
 evaluate how your data are filtered and then consider other parameters.
  
- <br><br>
+<br><br>
  
  ```   
  sbatch scripts/03_trimmomatic.sh -F _R1.fastq.gz -R _R2.fastq.gz \
@@ -433,8 +434,12 @@ evaluate how your data are filtered and then consider other parameters.
  -L LEADING:3 \
  -T TRAILING:3
  ``` 
- <br>
- </details>
+<br>
+When the script has finished running the trimmed data will be in a 'trimmed' folder. Each sample will have now be represented by four files. There will 
+be paired R1 and R2 read files, for the R1 and R2 reads that remained paired after filtering and trimming, and unpaired R1 and R2 files for those R1 
+and R2 reads, where only one of the pair remained after filtering. For our analyses, we will use the reads that are still paired. 
+
+</details>
  <br>
    
  <details><summary><font size="6"><b>7)  Re-check quality</b></font></summary>
