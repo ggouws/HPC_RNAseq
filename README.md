@@ -439,14 +439,12 @@ When the script has finished running the trimmed data will be in a 'trimmed' fol
 be paired R1 and R2 read files, for the R1 and R2 reads that remained paired after filtering and trimming, and unpaired R1 and R2 files for those R1 
 and R2 reads, where only one of the pair remained after filtering. For our analyses, we will use the reads that are still paired. 
 
-</details>
-<br>
 <br>
 <font size="4"><b>5.3) Trimmed data quality assessment</b></font>
 <br>
  
-Now that we have run trimmomatic, we can check how successful our quality control has been but running fastQC and MultiQC again on the 
-cleaned data. Run the script below.<br>
+Now that we have run Trimmomatic, we can check how successful our quality control has been by running fastQC and MultiQC on the 
+cleaned data, as per the command below:<br>
 <br> 
 
 ```   
@@ -455,10 +453,10 @@ sbatch scripts/04_clean_fastqc.sh
 <br><br>
 
 When the script is finished running, the fastQC output and reports will be in a 'clean_fastqc' folder. The two MultiQC html reports
-(Clean_data_R1_multiqc_report.html and Clean_data_R2_multiqc-report) will be in the 'quality_reports' folder for you to 
+('Clean_data_R1_multiqc_report.html' and 'Clean_data_R2_multiqc-report.html') will be in the 'quality_reports' folder for you to 
 download and examine.
 
-If you are satisfied with the quality of your data and the amount of data (number of reads) retained, you can proceed with your analysis.
+If you are satisfied with the quality and amount of data (number of reads) retained, you can proceed with your analysis.
 If not, you can return to the Trimmomatic step, changing the parameters and repeating the quality control.
   
   </details>
