@@ -281,8 +281,8 @@
  <br>
   <br>
   
-  Now that we have set up the HPC and have our data, we can start preparing and analysing your data. The 
-  first task is to source and add your reference genome or transcriptome. 
+  Now that we have set up the HPC and have our data, we need to source and add the reference genome 
+  or transcriptome. 
   <br>
 
   Remember that all scripts are launched from and work is done in our primary working directory 
@@ -314,7 +314,7 @@ cd /fastdata/$USER/my_project
     
   ``` 
  sbatch scripts/01_reference.sh \
- -L ["Insert copied NCBI-datasets command-line query here within quotation marks"]
+ -L "Insert copied NCBI-datasets command-line query here within quotation marks"
   ```
  
  When the script has finished running, the genome/transcriptome and annotation files will be in your 'reference'
@@ -330,30 +330,33 @@ cd /fastdata/$USER/my_project
   ```
 
 
-
- 
  </details>
   <br>
  <details><summary><font size="6"><b>5)  Quality Assessment, Quality Control and data trimming</b></font></summary>
   <br>
   <br>    
  
-  The next step is to check the quality of your fastq files and then perform quality trimming.
+  Our first analytical tasks are to investigate the quality of our sequence data and the fastq files, and then perform
+  quality filtering and trimming, such that high quality data remain for mapping and quantifying.
   
-  First you will run the script to generate the quality plots. This first runs [fastqc](https://www.bioinformatics.babraham.ac.uk/projects/fastqc/) on each sample separately. 
-  [MultiQC](https://multiqc.info) is then run to generate a combined quality plot. Two MultiQC plots are generated, one for all forward reads and one for reverse reads. These 
+  Firstly, you'll need to run the script to generate the quality plots of the raw data. This script
+  runs [fastQC](https://www.bioinformatics.babraham.ac.uk/projects/fastqc/) on each sample separately. The script then 
+  uses [MultiQC](https://multiqc.info) to combine the fastQC reports for the individual samples into a combined quality 
+  plot (in 'html' format), which you can download and view in a browser. Two MultiQC plots are generated; one for all
+  the R1 reads and one for the R2 reads. When completed, the fastQC output will be placed in a 'fastqc' folder, while the 
+  MultiQC reports will se 
   can be found in the 'fastqc' folder when the script has finished running.
   <br><br>
   <b>The command line arguments you must supply are:</b><br>
-  - the file extension for your forward reads (-f)
-  - the file extension for your reverse reads (-r)
+  - the file extension for your forward (R1) reads (-f)
+  - the file extension for your reverse (R2) reads (-r)
   <br><br>
   
    <br>
   
   
   ```   
- qsub scripts/03_fastqc.sh -f _1.fastq.gz -r _2.fastq.gz
+ sbatch scripts/02_raw_fastqc.sh -f _1.fastq.gz -r _2.fastq.gz
   ``` 
   
   <br>
