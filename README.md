@@ -468,7 +468,7 @@ If not, you can return to the Trimmomatic step, changing the parameters and repe
   <br>  
  
  We are now ready to map our cleaned reads to our reference genome or transcriptome. To do this, we will use 
- (HISAT2)<http://daehwankimlab.github.io/hisat2/manual/>. HISAT2 is a fast and memory efficient alignment tool, and - 
+ [HISAT2](http://daehwankimlab.github.io/hisat2/manual/). HISAT2 is a fast and memory-efficient alignment tool, and - 
  importantly for RNAseq work - it is a "splice aware" aligner. This means that it can map reads from transcriptomic 
  sequencing over the exon-intron junctions in a genome. Many common alignment tools are not "splice aware" and cannot
  accommodate these exon-intron junctions. As such, these tools will only be suitable for mapping our sequence reads
@@ -481,28 +481,29 @@ Trimmomatic to the reference.
  
   <br>
   <b>You'll need to provide two arguments in your command line when launching the script:</b><br>
-  - the accession number of your reference genome/transcriptome (-A)
-  - the extension (e.g., 'fna' or 'fasta' of your reference genome/transcriptome (-X)
-  The accession number need not be complete, but should be informative enough to identify your specific reference 
-  if you have multiple potential references in your 'reference' folder. Be careful when using hyphens (-) and 
-  underscores (_).
+  - the accession number of your reference genome/transcriptome (-A)<br>
+  - the extension (e.g., 'fna' or 'fasta' of your reference genome/transcriptome (-X)<br>
+  The accession number need not be complete, but should be informative (unique) enough to identify your specific 
+  reference if you have multiple potential references in your 'reference' folder. Be careful when using hyphens 
+  (-) and underscores (_).
    <br><br>
   
    <br>
  
   ```   
- qsub scripts/06_align.sh -g GCA_017639245.1_MMon_1.0_genomic.fna.gz
+ sbatch scripts/06_reference_align.sh -A GCA_017639245 -X fna.gz
   ```  
   
 
- bwa mem is an alignment algorithm well suited to Illumina-length sequences. The default output is a SAM (Sequence Alignment Map format). 
- However, here we pipe the output to samtools, a program for writing, viewing and manipulating alignment files, to sort and generate a BAM format, a binary, compressed version of SAM format.
- <br>
- The following script will first map our paired end data generated from trimmomatic to our reference, it will then combine the single end orphan reads into a single file and map those to the genome. 
- The resulting BAM files are then combined into a single file which will be used in the next step to call SNPs.
-  <br>
-  When the 06_align.sh has finished running your BAM files will be located in the 'aligned' folder.
- 
+HISAT2 will align your reads, and output the aligned results for each sample in SAM (Sequence Alignment Map format).
+This output is piped to SAMtools, a programme for writing, viewing and manipulating alignment files, which sorts them
+and generates a BAM file (a compressed, binary version) of the SAM file. These sorted BAM files are found in a folder
+called 'aligned'. HISAT2 will also generate (using the '--met-file' function) a report and mapping statistics for each
+sample (_sample_name_.stats) in the 'aligned' folder. The script also uses the 'flagstat' function of SAMtools to generate
+a mapping quality report ('initial_mapping_quality', which you can find in the 'quality_reports' folder. This file will
+contain the mapping statistics for all samples, with the sample names appearing before the tables of statistics.
+
+
   </details>
   <br>
  
