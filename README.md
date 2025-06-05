@@ -478,17 +478,14 @@ If not, you can return to the Trimmomatic step, changing the parameters and repe
 The script below will index the genome we downloaded earlier and will then map our paired and trimmed reads from
 Trimmomatic to the reference. 
 
-We have already indexed our genome when we downloaded it. You should have index files with the  extensions '.sa', '.pac', '.ann', '.amb' and '.bwt' that will be automatically detected and used in the mapping step below. 
- 
- bwa mem is an alignment algorithm well suited to Illumina-length sequences. The default output is a SAM (Sequence Alignment Map format). 
- However, here we pipe the output to samtools, a program for writing, viewing and manipulating alignment files, to sort and generate a BAM format, a binary, compressed version of SAM format.
- <br>
- The following script will first map our paired end data generated from trimmomatic to our reference, it will then combine the single end orphan reads into a single file and map those to the genome. 
- The resulting BAM files are then combined into a single file which will be used in the next step to call SNPs.
  
   <br>
-  <b>The command line argument you must supply is:</b><br>
-  - the name of your reference genome (-g)
+  <b>You'll need to provide two arguments in your command line when launching the script:</b><br>
+  - the accession number of your reference genome/transcriptome (-A)
+  - the extension (e.g., 'fna' or 'fasta' of your reference genome/transcriptome (-X)
+  The accession number need not be complete, but should be informative enough to identify your specific reference 
+  if you have multiple potential references in your 'reference' folder. Be careful when using hyphens (-) and 
+  underscores (_).
    <br><br>
   
    <br>
@@ -497,6 +494,12 @@ We have already indexed our genome when we downloaded it. You should have index 
  qsub scripts/06_align.sh -g GCA_017639245.1_MMon_1.0_genomic.fna.gz
   ```  
   
+
+ bwa mem is an alignment algorithm well suited to Illumina-length sequences. The default output is a SAM (Sequence Alignment Map format). 
+ However, here we pipe the output to samtools, a program for writing, viewing and manipulating alignment files, to sort and generate a BAM format, a binary, compressed version of SAM format.
+ <br>
+ The following script will first map our paired end data generated from trimmomatic to our reference, it will then combine the single end orphan reads into a single file and map those to the genome. 
+ The resulting BAM files are then combined into a single file which will be used in the next step to call SNPs.
   <br>
   When the 06_align.sh has finished running your BAM files will be located in the 'aligned' folder.
  
