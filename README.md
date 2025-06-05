@@ -481,8 +481,10 @@ Trimmomatic to the reference.
  
   <br>
   <b>You'll need to provide two arguments in your command line when launching the script:</b><br>
+  
   - the accession number of your reference genome/transcriptome (-A)<br>
   - the extension (e.g., 'fna' or 'fasta' of your reference genome/transcriptome (-X)<br>
+  
   The accession number need not be complete, but should be informative (unique) enough to identify your specific 
   reference if you have multiple potential references in your 'reference' folder. Be careful when using hyphens 
   (-) and underscores (_).
@@ -497,10 +499,10 @@ Trimmomatic to the reference.
 
 HISAT2 will align your reads, and output the aligned results for each sample in SAM (Sequence Alignment Map format).
 This output is piped to SAMtools, a programme for writing, viewing and manipulating alignment files, which sorts them
-and generates a BAM file (a compressed, binary version) of the SAM file. These sorted BAM files are found in a folder
+and generates a BAM file (a compressed, binary version of the SAM file). These sorted BAM files are found in a folder
 called 'aligned'. HISAT2 will also generate (using the '--met-file' function) a report and mapping statistics for each
-sample (_sample_name_.stats) in the 'aligned' folder. The script also uses the 'flagstat' function of SAMtools to generate
-a mapping quality report ('initial_mapping_quality', which you can find in the 'quality_reports' folder. This file will
+sample ('_sample_name_.stats') in the 'aligned' folder. The script also uses the 'flagstat' function of SAMtools to generate
+a mapping quality report ('initial_mapping_quality'), which you can find in the 'quality_reports' folder. This file will
 contain the mapping statistics for all samples, with the sample names appearing before the tables of statistics.
 
 
@@ -508,7 +510,7 @@ contain the mapping statistics for all samples, with the sample names appearing 
   <br>
  
    
- <details><summary><font size="6"><b>9)  Clean BAM files</b></font></summary>
+ <details><summary><font size="6"><b>7)  Clean aligned BAM files</b></font></summary>
   <br>
   <br>    
  Now we have our BAM files we can use the samtools command flagstat to find information on how the reads mapped.
