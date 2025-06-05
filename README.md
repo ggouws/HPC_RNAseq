@@ -505,8 +505,7 @@ sample ('_sample_name_.stats') in the 'aligned' folder. The script also uses the
 a mapping quality report ('initial_mapping_quality'), which you can find in the 'quality_reports' folder. This file will
 contain the mapping statistics for all samples, with the sample names appearing before the tables of statistics. 
 
-We can view the latter report as such:
-  <br><br>
+We can view the latter report as such (press `q` to exit this view when done):
 
   
   ```
@@ -531,9 +530,10 @@ QC of our data or possibly adjust our mapping parameters.
 If we are satisfied with the quality of our mapping, we will now proceed to clean up our BAM files. We will use
 SAMtools to exclude:
 
-	 1) Reads that were not mapped
-	 2) Reads that were not mapped in pairs (i.e., one read was mapped but the other not)
-
+  
+  - Reads that were not mapped at all
+  - Reads that were not mapped properly in pairs (i.e., one read was mapped and the other not)
+  
 SAMtools will use the 'flagstat' [flags] to identify and include reads that were mapped in pairs ('-f 2') and to exlcude reads 
 that weren't mapped or weren't mapped in pairs ('-F 12').
 
@@ -547,7 +547,20 @@ To clean our aligned files, we will submit the script as below (no additional ar
    
   <br><br>
   
-  We should now have a BAM file with all unmapped reads removed in the 'clean_aligned' directory. We can now proceed onto SNP calling.
+The script will create the cleaned BAM files ('_sample_prefix_.clean.bam') for each sample and place them in an
+'aligned_clean' folder. It will also use SAMtools 'flagstat' to produce a mapping report ('final_mapping_quality')
+in the 'quality_reports' folder. This will hold the reports for all of your samples. Upon viewing it, we should
+hopefully see that all of the reads we have retained are properly mapped in pairs.
+
+  
+  ```
+  less quality_reports/final_mapping_quality
+  ```
+   
+  <br><br>
+
+If so, we can now proceed to quantifying our transcriptomic reads!
+
   </details>
   <br>
   
