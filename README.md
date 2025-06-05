@@ -503,7 +503,22 @@ and generates a BAM file (a compressed, binary version of the SAM file). These s
 called 'aligned'. HISAT2 will also generate (using the '--met-file' function) a report and mapping statistics for each
 sample ('_sample_name_.stats') in the 'aligned' folder. The script also uses the 'flagstat' function of SAMtools to generate
 a mapping quality report ('initial_mapping_quality'), which you can find in the 'quality_reports' folder. This file will
-contain the mapping statistics for all samples, with the sample names appearing before the tables of statistics.
+contain the mapping statistics for all samples, with the sample names appearing before the tables of statistics. 
+
+We can view the latter report as such:
+  <br><br>
+
+  
+  ```
+  less quality_reports/initial_mapping_quality
+  ```
+   
+  <br><br>
+We need to consider how many of our reads have been mapped and how many of these have been mapped in pairs (i.e., the
+R1 and R2 reads have both properly mapped), as this is the data we will proceed with. If the mapping quality is poor
+and data are lost, we may need to consider alternative reference genomes or transcriptomes (if available), revisit the
+QC of our data or possibly adjust our mapping parameters.
+
 
 
   </details>
@@ -513,7 +528,7 @@ contain the mapping statistics for all samples, with the sample names appearing 
  <details><summary><font size="6"><b>7)  Clean aligned BAM files</b></font></summary>
   <br>
   <br>    
- Now we have our BAM files we can use the samtools command flagstat to find information on how the reads mapped.
+ By Now we have our BAM files we can use the samtools command flagstat to find information on how the reads mapped.
   
  We will then run samtools view to to exclude unmapped reads from our alignment file and then rerun flagstat on the resulting clean BAM file. 
  <br>
