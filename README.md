@@ -493,7 +493,7 @@ Trimmomatic to the reference.
    <br>
  
   ```   
- sbatch scripts/06_reference_align.sh -A GCA_017639245 -X fna.gz
+ sbatch scripts/05_reference_align.sh -A GCA_017639245 -X fna.gz
   ```  
   
 
@@ -528,20 +528,21 @@ QC of our data or possibly adjust our mapping parameters.
  <details><summary><font size="6"><b>7)  Clean aligned BAM files</b></font></summary>
   <br>
   <br>    
- By Now we have our BAM files we can use the samtools command flagstat to find information on how the reads mapped.
-  
- We will then run samtools view to to exclude unmapped reads from our alignment file and then rerun flagstat on the resulting clean BAM file. 
- <br>
- 
- The flagstat results can be viewed in the directory 'flagstat' and the clean BAM files are in the 'clean_aligned' directory.
- <br>
- 
- To run the BAM cleaning submit the script as below.
+If we are satisfied with the quality of our mapping, we will now proceed to clean up our BAM files. We will use
+SAMtools to exclude:
+
+	 1) Reads that were not mapped
+	 2) Reads that were not mapped in pairs (i.e., one read was mapped but the other not)
+
+SAMtools will use the 'flagstat' [flags] to identify and include reads that were mapped in pairs ('-f 2') and to exlcude reads 
+that weren't mapped or weren't mapped in pairs ('-F 12').
+
+To clean our aligned files, we will submit the script as below (no additional arguments are needed).
   <br><br>
 
   
   ```
-  qsub scripts/07_clean_bam.sh
+  sbatch scripts/06_align_clean.sh
   ```
    
   <br><br>
