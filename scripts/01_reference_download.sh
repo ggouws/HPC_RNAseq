@@ -1,8 +1,8 @@
 #!/bin/bash
 
-#SBATCH --job-name=01_reference
-#SBATCH -o 01_reference_o%j
-#SBATCH -e 01_reference_e%j
+#SBATCH --job-name=01_reference_download
+#SBATCH -o 01_reference_download_o%j
+#SBATCH -e 01_reference_download_e%j
 #SBATCH --nodes=1
 #SBATCH --ntasks-per-node=1
 #SBATCH --cpus-per-task=1
