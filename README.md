@@ -294,8 +294,8 @@ cd /fastdata/$USER/my_project
 ```
   
   If the reference genome or transcriptome you intend to use is available on NCBI, we will use the 
-  '01_reference.sh' script to download it. This script creates a directory ('reference') in
-  '/fastdata/$USER/my_project' in which to place the reference genome/transcriptome, uses the 
+  '01_reference_download.sh' script to download it. This script creates a directory ('reference') 
+  in '/fastdata/$USER/my_project' in which to place the reference genome/transcriptome, uses the 
   NCBI-datasets tool to download it, unpacks the downloaded 'zip' file and tidies the output, 
   leaving the genome/transcriptome ('.fna' or 'fasta' file) and the annotation ('.gff') file.
   <br>
