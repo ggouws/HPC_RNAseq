@@ -564,7 +564,7 @@ If so, we can now proceed to quantifying our transcriptomic reads!
   </details>
   <br>
   
- <details><summary><font size="6"><b>10) Call SNPs</b></font></summary>
+ <details><summary><font size="6"><b>7) Counting reads/START EDITING HERE</b></font></summary>
   <br>
   <br>   
    
@@ -624,7 +624,7 @@ If so, we can now proceed to quantifying our transcriptomic reads!
   </details>
   <br>
   
- <details><summary><font size="6"><b>11) Filter VCF file and extract SNP data</b></font></summary>
+ <details><summary><font size="6"><b>8) NEXT STEP</b></font></summary>
   <br>
   <br>    
  <b> The next step is to clean the VCF so we retain only high quality SNP sites we can be confident in. The script applies the following filters:</b>
@@ -681,7 +681,7 @@ If so, we can now proceed to quantifying our transcriptomic reads!
   <br>    
  
  
- <details><summary><font size="6"><b>12) Make files for D3 portal </b></font></summary>
+ <details><summary><font size="6"><b>9) NEXT STEP </b></font></summary>
   <br>
   <br>    
   
@@ -705,7 +705,7 @@ If so, we can now proceed to quantifying our transcriptomic reads!
   </details>
   <br>  
  
- <details><summary><font size="6"><b>13) Submit sequence data to the D3 design portal for primer design and generate a quote.</b></font></summary>
+ <details><summary><font size="6"><b>10) NEXT STEP</b></font></summary>
   <br>
   <br>  
     
