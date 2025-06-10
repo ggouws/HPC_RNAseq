@@ -313,7 +313,7 @@ cd /fastdata/$USER/my_project
 
     
   ``` 
- sbatch scripts/01_reference.sh \
+ sbatch scripts/01_reference_download.sh \
  -L "Insert copied NCBI-datasets command-line query here within quotation marks"
   ```
  
