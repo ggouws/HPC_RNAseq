@@ -17,14 +17,15 @@
   
 	
   This pipeline is set up to perform the analysis of RNAseq data using standard tools, as introduced in the NEOF
-  [RNAseq, differential gene expression and pathway analysis workshop](hyperlink). 
+  RNAseq, Differential Gene Expression and Pathway Analysis workshop. Details of the workshops can be found 
+  [here](https://neof.org.uk/training/). 
 
   This pipeline closley follows the approach and workflow developed for the above workshop by Katy Maher, Helen 
   Hipperson, Ewan Harney, Steve Paterson, Bert Overduin, Matthew Gemmell and Xuan Liu. It also relies substantially 
   on scripts developed by Katy Maher. Use and referencing of this repository implicitly acknowledges these contributions.
 
   The pipeline relies on you having short-read Illumina transcriptomic data for your samples, and access to a 
-  published or publically-available reference genome or transcriptome with some level of annotation.
+  published or publically-available reference genome or transcriptome with (preferably) a high level of annotation.
 
   This protocol has been written for use with the University of Sheffield's
   [BESSEMER](https://docs.hpc.shef.ac.uk/en/latest/bessemer/index.html) HPC system, but should be applicable to 
