@@ -224,8 +224,9 @@
 
   You'll now need to create a new subdirectory in which you will do all your work. It is called 'my_project' in the
   commands below, but you are welcome to name it as you see fit. You'll then need to create a subdirectory within 
-  'my_project', called 'raw_data' to receive your data. All other subirectories needed will be created when running
+  'my_project', called 'raw_data', to receive your data. All other subirectories needed will be created when running
   the scripts. Create this directory structure as follows:
+  
   ```
   mkdir /fastdata/$USER/my_project
   mkdir /fastdata/$USER/my_project/raw_data
@@ -250,7 +251,7 @@
 
   ```
   cp -r /fastdata/bi1gg_shared/your_project_data/* /fastdata/$USER/my_project/raw_data/
-  # The source is an example; the precise location will be provided
+  # The source directory is an example; the precise location will be provided
   ```
   
   If you have downloaded your (or other) data to your personal computer, you'll need to transfer this to the HPC. 
@@ -271,15 +272,15 @@
   # sample2_R2_001.fq.gz
   ```
   
-  Make sure that you have removed any 'tar.gz' or 'zip' files and any files that contain improperly demultiplexed data. 
+  Make sure that you have removed any '.tar.gz' or '.zip' files and any files that contain improperly demultiplexed data. 
   These may be labelled 'unclassified' (e.g., 'Unclassified_R1', 'Unclassified_R2') or be indicated as 'R0' reads. 
   <br>
 
-  The workflow assumes that the '/fastdata/<user>my_project/raw_data' directory contains sequence data that is:
+  The workflow assumes that the '/fastdata/<user>my_project/raw_data' directory contains sequence data that are:
 
   * Paired (two files per biological sample)
   * Demultiplexed
-  * FASTQ format
+  * In FASTQ format
   * In the compressed '.gz' format (optional, but recommended)
 
   <br>
@@ -295,14 +296,6 @@
   ```
   </details>
   <br>
-
-  **IMPORTANT:** When running the scripts below and throughout the pipeline, you'll need to wait for the job
-  to finish running before submitting the next job. In most cases, the job depends on and uses the output from
-  the previous job. It is also **important** to check the logs (an output and error log will be produced for 
-  each job) before proceeding. This will inform you as to whether there were any errors or if the job completed 
-  properly.
-
-
   
  
  <details><summary><font size="6"><b>4)  Download reference genome or transcriptome</b></font></summary>
