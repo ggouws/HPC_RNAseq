@@ -57,6 +57,7 @@
   <br>
   <font size="4"><b>2.1) Access the HPC</b></font>
   <br>
+	
   To access the BESSEMER high-performance computer (HPC) you must be connected
   to the university network - this can be achieved remotely by using the
   virtual private network (VPN) service.
@@ -72,6 +73,7 @@
   <br>
   <font size="4"><b>2.2) Access a worker node on BESSEMER</b></font>
   <br>
+  
   Once you have successfully logged into BESSEMER, you need to access a worker node:
 
   ```
@@ -92,34 +94,41 @@
   <br>
   <font size="4"><b>2.3) Load the Genomics Software Repository</b></font>
   <br>
+  
   The Genomics Software Repository contains several pre-loaded pieces of software
   and environments useful for a range of genomics analyses, including this one.
   
   Type:
+  
   ```
   source ~/.bash_profile
   ```
   
   Did you receive the following message when you accessed the worker node?
+  
   ```
   Your account is set up to use the Genomics Software Repository
   ```
 
   If so, you are set up and do not need to do the following step.
   If not, enter the following:
+  
   ```
   echo -e "if [[ -e '/usr/local/extras/Genomics' ]];\nthen\n\tsource /usr/local/extras/Genomics/.bashrc\nfi" >> $HOME/.bash_profile
   ```
   ...and then re-load your profile:
+  
   ```
   source ~/.bash_profile
   ```
+  
   Upon re-loading, you should see the message relating to the Genomics Software Repository above.
 
   
   <br>
   <font size="4"><b>2.4) Set up your conda profile</b></font>
   <br>
+  
   If you have never run conda before on the Bessemer, you might have to initialise your conda. To do this type:
   
   ```
@@ -132,6 +141,7 @@
   <br>
   <font size="4"><b>2.5) Accessing the molecolb priority queue/partition</b></font>
   <br>
+
   
   These scripts are written to launch the jobs using the ___molecolb___ priority queue/partition. Contact one of the
   NEOF Bioinformatics Team to check whether you have or to grant you access. You could also use the general 
@@ -159,14 +169,19 @@
 
   The job will then receive the allocated resources, the task will run, and the appropriate output files generated 
   (inlcuding output and error logs). In the following workflow, the output from a particular step is the input for 
-  the next step. You'll need to wait for each job to finish before submitting the next. It is important to keep in 
-  mind that the resources requested in the scripts may not be suitable for your own analysis and may need to be 
-  changed. Again, the NEOF Bioinformatics Team can assist and provide help in setting these in the scripts.
+  the next step. **IMPORTANT:** You'll need to wait for each job to finish before submitting the next. It is also
+  **important** to check the error and output logs after each step/job (before launching the next job) to see whether 
+  it has completed properly or if there were issues or failures.
+  
+  You should also keep in mind that the resources (the number of cores, memory and time) requested in the scripts 
+  may not be suitable for your own data set and analysis (or another HPC, if you are not using Bessemer), and may 
+  need to be changed. Again, the NEOF Bioinformatics Team can assist and provide help in setting these in the scripts.
 
 
   <br>
   <font size="4"><b>2.6) Passing command line arguments to a script</b></font>
   <br>
+
   As well as running the standardised scripts there are some parameters which will be unique to your project or data. 
   For example, these might be your file extensions, the name of your reference genome or the filtering parameters you
   want to implement for QC.<br>
@@ -186,6 +201,7 @@
   <br>
   <font size="4"><b>3.1) Create a working directory and load your data</b></font>
   <br>
+  
   You should work in the directory '/fastdata' on BESSEMER as this allows shared access to your files, scripts,
   and output and error logs, all of which are useful for troubleshooting.<br>
   <br>
@@ -217,6 +233,7 @@
   <br>
   <font size="4"><b>3.2) Required data inputs</b></font>
   <br>
+
   For this workflow, you'll need to provide your raw, paired-end transcriptomic/RNA sequence data and a reference
   genome or transcriptome to align this data to. You'll also need the annotation data/files for your genome or
   transcriptome.
@@ -224,6 +241,7 @@
   <br>
   <font size="4"><b>3.3) Load required RNA sequence data onto the HPC</b></font>
   <br>
+  
   If you have generated the data through NEOF, the NEOF team will download and archive your data as soon as 
   it is released by the Centre for Genomic Research (CGR) at the University of Liverpool. You will need to copy your 
   data into your 'raw_data' folder. The command will be similar to that below - a member of the NEOF Bioinformatics
