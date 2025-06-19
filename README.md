@@ -175,7 +175,7 @@
   
   You should also keep in mind that the resources (the number of cores, memory and time) requested in the scripts 
   may not be suitable for your own data set and analysis (or another HPC, if you are not using Bessemer), and may 
-  need to be changed. Again, the NEOF Bioinformatics Team can assist and provide help in setting these in the scripts.
+  need to be changed. Again, the NEOF Bioinformatics Team can help in setting these in the scripts.
 
 
   <br>
