@@ -276,6 +276,15 @@
   ```
   </details>
   <br>
+
+  **IMPORTANT:** When running the scripts below and throughout the pipeline, you'll need to wait for the job
+  to finish running before submitting the next job. In most cases, the job depends on and uses the output from
+  the previous job. It is also **important** to check the logs (an output and error log will be produced for 
+  each job) before proceeding. This will inform you as to whether there were any errors or if the job completed 
+  properly.
+
+
+  
  
  <details><summary><font size="6"><b>4)  Download reference genome or transcriptome</b></font></summary>
  <br>
@@ -564,7 +573,7 @@ If so, we can now proceed to quantifying our transcriptomic reads!
   </details>
   <br>
   
- <details><summary><font size="6"><b>7) Counting reads/START EDITING HERE</b></font></summary>
+ <details><summary><font size="6"><b>8) Counting reads/START EDITING HERE</b></font></summary>
   <br>
   <br>   
    
