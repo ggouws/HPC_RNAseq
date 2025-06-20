@@ -586,27 +586,55 @@ If so, we can now proceed to quantifying our transcriptomic reads!
   </details>
   <br>
   
- <details><summary><font size="6"><b>8) Counting reads/START EDITING HERE</b></font></summary>
+ <details><summary><font size="6"><b>8) Counting reads</b></font></summary>
   <br>
   <br>   
    
-  We are now ready to start our SNP calling. To do this we will use [BCFtools](https://samtools.github.io/bcftools/bcftools.html).
+  We will now use [htseq-count](https://htseq.readthedocs.io/en/release_0.11.1/count.html) to 
+  quantify/count our transcripts (reads) for the various genes or exons. For this, we need to be sure
+  that we have the annotation file ('.gff', '.gff3' or '.gtf' file) in our 'reference' directory. The
+  more detailed the annotation, the better.
   
   <br>
   
-  This SNP calling script first uses 'samtools faidx' to index the genome. This will produce a '.fai' index file.
+  The command line further below includes various arguments, which will need to be considered:
   
   <br> 
   
   If your genome file is gzipped we first need to unzip this as samtools faidx does not work with gzipped files.
   <br> 
-   
-  To do this type (where GCA_017639245.1_MMon_1.0_genomic.fna.gz is your genome name):
+  - -A: The start of the accession number or file name of your genome/transcriptome annotation file. As with the
+    mapping step above, you only need to provide enough information to distinguish this file from other annotation
+    files that may be in your 'reference' folder.
+  - -X: The file extension of the genome/transcriptome annotation file.
+  - -m: This determines how the software will deal with reads that overlap more than one feature (e.g., straddling
+    introns or mapping to multiple genes). The options available are "union" (the most commonly used mode; for
+    reads spanning an intron), "intersection-strict" and "intersection-nonempty". There is a useful illustration
+    [here](https://htseq.readthedocs.io/en/release_0.11.1/count.html) to show the use and effect of the different modes.
+  - -s: Whether the data are stranded ("yes") or not ("no"). This refers to whether your data/sequence reads are in a
+    particular orientation. There is more information [here](https://chipster.csc.fi/manual/library-type-summary.html).
+    This will depend on your library preparation.
+  - -t: The feature type that you want to quantify, typically genes ("gene") or exons ("exon"). The features that can be
+    quantified are named in the third column of your ('.gff') annotation file.
+  - -i: The GFF attribute that you want to use as a feature ID. This is what is used to identify the counts in the tables
+    that are produced. If multiple GFF lines have the same ID, they will be considered as being part of the same feature.
+    As such, a high resolution annotation is desirable. 
+  - -r: This specifies whether the aligned BAM files are sorted by alignment position ("pos") or by read name ("name").
+    The preceding scripts sort the files by position, but you may have data that have been sorted by name. 
+  <>
+The script will be launched as such:
   <br>  
   <br> 
   
   ``` 
-  gunzip genome/GCA_017639245.1_MMon_1.0_genomic.fna.gz
+  sbatch scripts/07_htseq-count.sh \
+  -A GCA_017639245 \
+  -X gff \
+  -m union \
+  -s yes \
+  -t gene \
+  -i ID \
+  -r pos
   ``` 
   
   <br>  
