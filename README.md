@@ -600,9 +600,6 @@ If so, we can now proceed to quantifying our transcriptomic reads!
   The command line further below includes various arguments, which will need to be considered:
   
   <br> 
-  
-  If your genome file is gzipped we first need to unzip this as samtools faidx does not work with gzipped files.
-  <br> 
   - -A: The start of the accession number or file name of your genome/transcriptome annotation file. As with the
     mapping step above, you only need to provide enough information to distinguish this file from other annotation
     files that may be in your 'reference' folder.
@@ -610,7 +607,7 @@ If so, we can now proceed to quantifying our transcriptomic reads!
   - -m: This determines how the software will deal with reads that overlap more than one feature (e.g., straddling
     introns or mapping to multiple genes). The options available are "union" (the most commonly used mode; for
     reads spanning an intron), "intersection-strict" and "intersection-nonempty". There is a useful illustration
-    [here](https://htseq.readthedocs.io/en/release_0.11.1/count.html) to show the use and effect of the different modes.
+    [here](https://htseq.readthedocs.io/en/release_0.11.1/count.html) to show the use and impact of the different modes.
   - -s: Whether the data are stranded ("yes") or not ("no"). This refers to whether your data/sequence reads are in a
     particular orientation. There is more information [here](https://chipster.csc.fi/manual/library-type-summary.html).
     This will depend on your library preparation.
@@ -621,7 +618,7 @@ If so, we can now proceed to quantifying our transcriptomic reads!
     As such, a high resolution annotation is desirable. 
   - -r: This specifies whether the aligned BAM files are sorted by alignment position ("pos") or by read name ("name").
     The preceding scripts sort the files by position, but you may have data that have been sorted by name. 
-  <>
+  <br>
 The script will be launched as such:
   <br>  
   <br> 
@@ -639,32 +636,14 @@ The script will be launched as such:
   
   <br>  
     
-  <b> You must supply the command line with:</b><br>
-  - the name of your reference genome (-g)
-  <br><br>
+  Once the script has run, a file '' for each sample will be saved to a folder called 'htseq'. Each file has two columns - 
+  the first with the feature name and the second with the read counts for that feature. Counts will also be presented for 
+  ambiguously mapped features or for "no features", where the features aren't defined in the annotation file. Potentially,
+  unaligned or alignments with poor quality can also be counted, but these should have zero counts, as we filtered our
+  aligned BAM files.
   
-  We then use bcftools mpileup  using the following parameter options:
-  - Ou: ouput an uncompressed bam file. This is the option to use when piping the output to another command for optimum performance/speed.
-  - --max-depth 10000: the maximum number of sequences considered per position
-  - -P ILLUMINA: use Illumina platform for indels
-  - -a FORMAT/DP,FORMAT/AD: output depth and allelic depth
-  <br><br>
-  <b>The command line argument you must specify are:</b><br>
-  - filter out alignments with mapping quality < the quality specified (-a)
-  - filter out bases with QS < the quality specified (-b)
-  <br><br>
- The results from mpileup are then piped to call and we use the following options.
-  - -m: use the multiallelic caller
-  - -v: output variants only 
-  - -f GQ: output genotype quality
-  - -O z: output in compressed VCF format
-   <br><br>
-  <b>The command line argument you must supply is:</b><br>
-  - the name you want to call your VCF (-o)
-   <br><br>
   
-   <br>
- 
+  
   ```  
  qsub scripts/08_call_snps.sh -g GCA_017639245.1_MMon_1.0_genomic.fna -o monkparakeet -a 20 -b 20
   ```   
