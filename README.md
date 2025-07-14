@@ -596,10 +596,12 @@ If so, we can now proceed to quantifying our transcriptomic reads!
   more detailed the annotation, the better.
   
   <br>
+
+<br>  
+    
+  <b> The command line further below includes various arguments, which will need to be considered:</b><br>
+  <br><br>
   
-  The command line further below includes various arguments, which will need to be considered:
-  
-  <br> 
   - -A: The start of the accession number or file name of your genome/transcriptome annotation file. As with the
     mapping step above, you only need to provide enough information to distinguish this file from other annotation
     files that may be in your 'reference' folder.
