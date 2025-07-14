@@ -67,5 +67,5 @@ htseq-count \
 -r "$parameterR" \
 -f bam \
 "$src/aligned_clean/${BASE}.clean.bam" "$src/reference/"$parameterA"*"$parameterX" > \
-"$src/htseq/${BASE}_genecount.htseq";
+"$src/htseq/${BASE}_"$parameterT"count.htseq";
 done
