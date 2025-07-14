@@ -636,19 +636,17 @@ The script will be launched as such:
   
   <br>  
     
-  Once the script has run, a file '' for each sample will be saved to a folder called 'htseq'. Each file has two columns - 
-  the first with the feature name and the second with the read counts for that feature. Counts will also be presented for 
-  ambiguously mapped features or for "no features", where the features aren't defined in the annotation file. Potentially,
-  unaligned or alignments with poor quality can also be counted, but these should have zero counts, as we filtered our
-  aligned BAM files.
-  
-  
-  
-  ```  
- qsub scripts/08_call_snps.sh -g GCA_017639245.1_MMon_1.0_genomic.fna -o monkparakeet -a 20 -b 20
-  ```   
-  <br>
-  When this script has finished running you should have a vcf file in your 'vcf' folder. 
+  Once the script has run, a counts file for each sample will be saved to a folder called 'htseq'. The file name will include
+  the sample name and the feature counted, with the suffix "count.htseq". Each file has two columns - the first with the 
+  feature name and the second with the read counts for that feature. Counts will also be presented for ambiguously-mapped 
+  features or for "no features", where the features aren't defined in the annotation file. Potentially, unaligned or alignments 
+  with poor quality can also be counted, but these should have zero counts, as we filtered our aligned BAM files.
+
+
+  Once completed, use a scp protocol, FileZilla or the download function in MobaXTerm to download the 'htseq' folder and all 
+  the files to your local computer. The subsequent differential gene expression (DGE) analysis, using DESeq2, will be run
+  locally in R in RStudio or Jupyter Notebook (as you prefer).
+
   
   </details>
   <br>
