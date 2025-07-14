@@ -594,12 +594,10 @@ If so, we can now proceed to quantifying our transcriptomic reads!
   quantify/count our transcripts (reads) for the various genes or exons. For this, we need to be sure
   that we have the annotation file ('.gff', '.gff3' or '.gtf' file) in our 'reference' directory. The
   more detailed the annotation, the better.
-  
   <br>
 
-<br>  
-    
-  <b> The command line further below includes various arguments, which will need to be considered:</b><br>
+   
+  The command line further below includes various arguments, which will need to be considered:<br>
   <br><br>
   
   - -A: The start of the accession number or file name of your genome/transcriptome annotation file. As with the
@@ -613,8 +611,8 @@ If so, we can now proceed to quantifying our transcriptomic reads!
   - -s: Whether the data are stranded ("yes") or not ("no"). This refers to whether your data/sequence reads are in a
     particular orientation. There is more information [here](https://chipster.csc.fi/manual/library-type-summary.html).
     This will depend on your library preparation.
-  - -t: The feature type that you want to quantify, typically genes ("gene") or exons ("exon"). The features that can be
-    quantified are named in the third column of your ('.gff') annotation file.
+  - -t: The feature type that you want to quantify, typically genes ("gene" or "CDS", depending on the annotation) or exons
+    ("exon"). The features that can be quantified are named in the third column of your ('.gff') annotation file.
   - -i: The GFF attribute that you want to use as a feature ID. This is what is used to identify the counts in the tables
     that are produced. If multiple GFF lines have the same ID, they will be considered as being part of the same feature.
     As such, a high resolution annotation is desirable. 
