@@ -6,13 +6,11 @@
 #SBATCH --nodes=1
 #SBATCH --ntasks-per-node=1
 #SBATCH --cpus-per-task=1
-#SBATCH -A molecolb
-#SBATCH -p molecolb
 #SBATCH --mem-per-cpu=2GB
 #SBATCH --time=00:20:00
 
 source ~/.bash_profile
-conda activate ncbi-datasets
+conda activate RNAseq
 
 src=$PWD
 
