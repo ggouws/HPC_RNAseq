@@ -28,8 +28,8 @@
   published or publically-available reference genome or transcriptome with (preferably) a high level of annotation.
 
   This protocol has been written for use with the University of Sheffield's
-  [BESSEMER](https://docs.hpc.shef.ac.uk/en/latest/bessemer/index.html) HPC system, but should be applicable to 
-  any GNU/Linux-based HPC system, with appropriate software installations and modification. Your mileage 
+  [Stanage](https://docs.hpc.shef.ac.uk/en/latest/stanage/index.html#gsc.tab=0) HPC system, but should be applicable to 
+  any GNU/Linux-based HPC system, with appropriate environments, software installations and modification. Your mileage 
   may vary.
 
   Code which the user (that's you) must run is highlighted in a code block like this:
