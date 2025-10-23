@@ -58,23 +58,21 @@
   <font size="4"><b>2.1) Access the HPC</b></font>
   <br>
 	
-  To access the BESSEMER high-performance computer (HPC) you must be connected
+  To access the Stanage high-performance computer (HPC) you must be connected
   to the university network - this can be achieved remotely by using the
   virtual private network (VPN) service.
 
-  [Please see the university IT pages for details on how to connect to the VPN.](https://students.sheffield.ac.uk/it-services/vpn)
+  Please see the university IT pages for details on how to [connect to the VPN](https://students.sheffield.ac.uk/it-services/vpn).
 
   Once connected to the VPN you also need to connect to the HPC using a secure shell (SSH)
   connection. This can be achieved using the command line on your system (the Mac Terminal or Windows 
   PowerShell) or a software package such as [MobaXterm](https://mobaxterm.mobatek.net/).
 
-  [See the university pages for guidance on how to connect to the VPN](https://docs.hpc.shef.ac.uk/en/latest/hpc/index.html).
-
   <br>
-  <font size="4"><b>2.2) Access a worker node on BESSEMER</b></font>
+  <font size="4"><b>2.2) Access a worker node on Stanage</b></font>
   <br>
   
-  Once you have successfully logged into BESSEMER, you need to access a worker node:
+  Once you have successfully logged into Stanage, you need to access a worker node:
 
   ```
   srun --pty bash -l
@@ -82,11 +80,11 @@
   You should see that the command prompt has changed from
 
   ```
-  [<user>@bessemer-login2 ~]$
+  [<user>@login2 [stanage] ~]$
   ```
   to
   ```
-  [<user>@bessemer-node001 ~]$
+  [<user>@node001 [stanage] ~]$
   ```
   ...where \<user\> is your University of Sheffield (UoS) IT username.
 
@@ -114,7 +112,8 @@
   If not, enter the following:
   
   ```
-  echo -e "if [[ -e '/usr/local/extras/Genomics' ]];\nthen\n\tsource /usr/local/extras/Genomics/.bashrc\nfi" >> $HOME/.bash_profile
+  echo -e "if [[ -e '/mnt/community/Genomics' ]];\nthen\n\tsource /mnt/community/Genomics/.bashrc\nfi" >>
+$HOME/.bash_profile
   ```
   ...and then re-load your profile:
   
@@ -122,35 +121,24 @@
   source ~/.bash_profile
   ```
   
-  Upon re-loading, you should see the message relating to the Genomics Software Repository above.
+  Upon re-loading, you should see the above message relating to the Genomics Software Repository.
 
   
   <br>
   <font size="4"><b>2.4) Set up your conda profile</b></font>
   <br>
   
-  If you have never run conda before on the Bessemer, you might have to initialise your conda. To do this type:
+  If you have never run conda before on Stanage, you might have to initialise your conda. To do this type:
   
   ```
   conda init bash
   ```
   
-  You will then be asked to reopen your current shell. Log out and then back into Bessemer and then continue. 
+  You will then be asked to reopen your current shell. Log out and then back into Stanage and then continue. 
   <br>
   
   <br>
-  <font size="4"><b>2.5) Accessing the molecolb priority queue/partition</b></font>
-  <br>
-
-  
-  These scripts are written to launch the jobs using the ___molecolb___ priority queue/partition. Contact one of the
-  NEOF Bioinformatics Team to check whether you have or to grant you access. You could also use the general 
-  ***sheffield*** partition. One of the team will gladly give you instructions for modifying the submission scripts
-  to do this.
-  <br>
-
-  <br>
-  <font size="4"><b>2.6) Running scripts on the HPC cluster</b></font>
+  <font size="4"><b>2.5) Running scripts on the HPC cluster</b></font>
   <br>
   
   To add our job to the job scheduler, we would submit the shell scripts using 'sbatch'
@@ -174,7 +162,7 @@
   it has completed properly or if there were issues or failures.
   
   You should also keep in mind that the resources (the number of cores, memory and time) requested in the scripts 
-  may not be suitable for your own data set and analysis (or another HPC, if you are not using Bessemer), and may 
+  may not be suitable for your own data set and analysis (or another HPC, if you are not using Stanage), and may 
   need to be changed. Again, the NEOF Bioinformatics Team can help in setting these in the scripts.
 
 
@@ -202,34 +190,34 @@
   <font size="4"><b>3.1) Create a working directory and load your data</b></font>
   <br>
   
-  You should work in the directory '/fastdata' on BESSEMER as this allows shared access to your files, scripts,
-  and output and error logs, all of which are useful for troubleshooting.<br>
+  You should work in the directory '/mnt/parscratch/users/' on Stanage as this allows adequate space for your data and
+  output (opposed to your home directory) and it also allows shared access to your files, scripts, and output and error
+  logs, all of which are useful for troubleshooting.<br>
   <br>
 
-  Check if you already have a directory in '/fastdata' by running the command exactly as it appears below.
+  Check if you already have a directory in '/mnt/parscratch/users/' by running the command exactly as it appears below.
 
   ```
-  ls /fastdata/$USER
+  ls /mnt/parscratch/users/$USER
   ```
 
   If you receive the message
   ```
   ls: cannot access /fastdata/<user>: No such file or directory
   ```
-  you'll need to create a new folder in '/fastdata' using the command exactly as it appears below:
+  you'll need to create a new folder in '/mnt/parscratch/users/' using the command exactly as it appears below:
 
   ```
-  mkdir -m 0755 /fastdata/$USER
+  mkdir -m 0755 /mnt/parscratch/users/$USER
   ```
 
   You'll now need to create a new subdirectory in which you will do all your work. It is called 'my_project' in the
   commands below, but you are welcome to name it as you see fit. You'll then need to create a subdirectory within 
   'my_project', called 'raw_data', to receive your data. All other subirectories needed will be created when running
-  the scripts. Create this directory structure as follows:
+  the scripts. Create this directory structure as follows (using or renaming 'my_project'):
   
   ```
-  mkdir /fastdata/$USER/my_project
-  mkdir /fastdata/$USER/my_project/raw_data
+  mkdir -p /mnt/parscratch/users/$USER/my_project/raw_data
   ```
   <br>
   <font size="4"><b>3.2) Required data inputs</b></font>
@@ -250,7 +238,7 @@
   <br>
 
   ```
-  cp -r /fastdata/bi1gg_shared/your_project_data/* /fastdata/$USER/my_project/raw_data/
+  cp -r /mnt/parscratch/users/bi1gg_shared/your_project_data/* /mnt/parscratch/users/$USER/my_project/raw_data/
   # The source directory is an example; the precise location will be provided
   ```
   
@@ -259,13 +247,14 @@
   Please be sure that you download the raw data. Links will be provided to download trimmed data, but since you 
   will be doing your own QC, you'll have greater flexibility when you have access to the raw data. To transfer data 
   to the HPC, you can use a file transfer protocol, such as 'scp', the upload feature in MobaXTerm or a tool such
-  as [FileZilla](https://filezilla-project.org/). Be sure that you upload the data to '/fastdata/$USER/my_project/raw_data'.
+  as [FileZilla](https://filezilla-project.org/). Be sure that you upload the data to
+  '/mnt/parscratch/users/$USER/my_project/raw_data'.
 
 
   Run 'ls' on your 'raw_data' folder and you should see something like the following
   
   ```
-  ls /fastdata/$USER/my_project_raw_data
+  ls /mnt/parscratch/users/$USER/my_project/raw_data
   # sample1_R1_001.fq.gz
   # sample1_R2_001.fq.gz
   # sample2_R1_001.fq.gz
@@ -276,7 +265,8 @@
   These may be labelled 'unclassified' (e.g., 'Unclassified_R1', 'Unclassified_R2') or be indicated as 'R0' reads. 
   <br>
 
-  The workflow assumes that the '/fastdata/<user>my_project/raw_data' directory contains sequence data that are:
+  The workflow assumes that the '/mnt/parscratch/users/$USER/my_project/raw_data' directory contains sequence data that
+  are:
 
   * Paired (two files per biological sample)
   * Demultiplexed
@@ -286,12 +276,12 @@
   <br>
   <b><font size="4">3.4) Copy the analysis scripts</b></font>
   <br>
-  Clone this GitHub repository and then copy the 'scripts' folder into your '/fastdata/$USER/my_project'
+  Clone this GitHub repository and then copy the 'scripts' folder into your '/mnt/parscratch/users/$USER/my_project'
   folder. You can then delete the GitHub download.
 
   ```
   git clone https://github.com/ggouws/HPC_RNAseq
-  cp -r HPC_RNAseq/scripts /fastdata/$USER/my_project/
+  cp -r HPC_RNAseq/scripts /mnt/parscratch/users/$USER/my_project/
   rm -rf HPC_RNAseq
   ```
   </details>
@@ -307,19 +297,19 @@
   <br>
 
   Remember that all scripts are launched from and work is done in our primary working directory 
-  ('/fastdata/$USER/my_project'), so you'll need to navigate there when logging on to Bessemer and prior
-  to launching any scripts.
+  ('/mnt/parscratch/users/$USER/my_project'), so you'll need to navigate there when logging on to Stanage and
+  prior to launching any scripts.
 
   ```
-cd /fastdata/$USER/my_project
+cd /mnt/parscratch/users/$USER/my_project
 ```
   
   If the reference genome or transcriptome you intend to use is available on NCBI, we will use the 
   '01_reference_download.sh' script to download it. This script creates a directory ('reference') 
-  in '/fastdata/$USER/my_project' in which to place the reference genome/transcriptome, uses the 
+  in '/fastdata/$USER/my_project' in which to place the reference genome/transcriptome. It uses the 
   NCBI-datasets tool to download it, unpacks the downloaded '.zip' file and tidies the output, 
-  leaving the genome/transcriptome ('.fna' or 'fasta' file) and the annotation ('.gff' or 'gff3') 
-  file.
+  leaving the genome/transcriptome ('.fna' or '.fasta' file) and the annotation ('.gff' or 'gff3') 
+  file, if available.
   <br>
 
   To run this script, we will supply the following command-line argument:
@@ -336,7 +326,7 @@ cd /fastdata/$USER/my_project
     
   ``` 
  sbatch scripts/01_reference_download.sh \
- -L "Insert copied NCBI-datasets command-line query here within quotation marks"
+ -L "Insert copied NCBI-datasets command-line query here, WITHIN quotation marks"
   ```
  
  When the script has finished running, the genome/transcriptome and annotation files will be in your 'reference'
