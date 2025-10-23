@@ -115,7 +115,7 @@
   echo -e "if [[ -e '/mnt/community/Genomics' ]];\nthen\n\tsource /mnt/community/Genomics/.bashrc\nfi" >>
 $HOME/.bash_profile
   ```
-  ...and then re-load your profile:
+  Then re-load your profile:
   
   ```
   source ~/.bash_profile
@@ -203,7 +203,7 @@ $HOME/.bash_profile
 
   If you receive the message
   ```
-  ls: cannot access /fastdata/<user>: No such file or directory
+  ls: cannot access /mnt/parscratch/users/<user>: No such file or directory
   ```
   you'll need to create a new folder in '/mnt/parscratch/users/' using the command exactly as it appears below:
 
