@@ -212,8 +212,8 @@ $HOME/.bash_profile
   ```
 
   You'll now need to create a new subdirectory in which you will do all your work. It is called 'my_project' in the
-  commands below, but you are welcome to name it as you see fit. You'll then need to create a subdirectory within 
-  'my_project', called 'raw_data', to receive your data. All other subirectories needed will be created when running
+  commands below, but you are welcome to name it as you see fit. You'll also need to create a subdirectory within 
+  'my_project', called 'raw_data', to receive your data. All other subdirectories needed will be created when running
   the scripts. Create this directory structure as follows (using or renaming 'my_project'):
   
   ```
