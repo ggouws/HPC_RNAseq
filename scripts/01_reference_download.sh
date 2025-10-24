@@ -1,8 +1,8 @@
 #!/bin/bash
 
 #SBATCH --job-name=01_reference_download
-#SBATCH -o 01_reference_download_o%j
-#SBATCH -e 01_reference_download_e%j
+#SBATCH -o 01_reference_download.sh_o%j
+#SBATCH -e 01_reference_download.sh_e%j
 #SBATCH --nodes=1
 #SBATCH --ntasks-per-node=1
 #SBATCH --cpus-per-task=1
@@ -47,7 +47,7 @@ eval $parameterL
 
 # Unzip the downloaded data, move genome/transcriptome and annotation files and tidy (remove downloaded zip)
 unzip ncbi_dataset
-cp ncbi_dataset/data/*/*.fna ncbi_dataset/data/*/*.fasta ncbi_dataset/data/*/*.gff ncbi_dataset/data/*/*.gff3 .
+cp ncbi_dataset/data/*/*.fna ncbi_dataset/data/*/*.fasta ncbi_dataset/data/*/*.gff ncbi_dataset/data/*/*.gff3 ncbi_dataset/*/*.gtf .
 rm -r ncbi_*
 rm md5sum.txt
 rm README.md
