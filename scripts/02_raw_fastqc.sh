@@ -39,8 +39,7 @@ fi
 
 src=$PWD
 
-mkdir $src/raw_fastqc
-mkdir $src/raw_fastqc/fastqc_F
+mkdir -p $src/raw_fastqc/fastqc_F/multiqc
 
 for f in $src/raw_data/*$parameterF;
 do fastqc $f -o $src/raw_fastqc/fastqc_F
@@ -49,7 +48,7 @@ done
 multiqc $src/raw_fastqc/fastqc_F -o $src/raw_fastqc/fastqc_F/multiqc
 
 
-mkdir $src/raw_fastqc/fastqc_R
+mkdir -p $src/raw_fastqc/fastqc_R/multiqc
 
 for f in $src/raw_data/*$parameterR;
 do fastqc $f -o $src/raw_fastqc/fastqc_R
