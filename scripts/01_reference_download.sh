@@ -10,7 +10,7 @@
 #SBATCH --time=00:20:00
 
 source ~/.bash_profile
-conda activate RNAseq
+conda activate rnaseq
 
 src=$PWD
 
