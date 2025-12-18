@@ -6,13 +6,11 @@
 #SBATCH --nodes=1
 #SBATCH --ntasks-per-node=1
 #SBATCH --cpus-per-task=8
-#SBATCH -A molecolb
-#SBATCH -p molecolb
 #SBATCH --mem-per-cpu=8GB
 #SBATCH --time=72:00:00
 
 source ~/.bash_profile
-conda activate htseq
+conda activate rnaseq
 
 helpFunction()
 {
