@@ -354,7 +354,7 @@ cd /mnt/parscratch/users/$USER/my_project
   Our first analytical tasks are to investigate the quality of our sequence data and the fastq files, and then perform
   quality filtering and trimming, such that high quality data remain for mapping and quantifying.
   
-  Firstly, you'll need to run the script to generate the quality plots of the raw data. This script
+  First, you'll need to run the script to generate the quality plots of the raw data. This script
   runs [fastQC](https://www.bioinformatics.babraham.ac.uk/projects/fastqc/) on each sample separately. The script then 
   uses [MultiQC](https://multiqc.info) to combine the fastQC reports for the individual samples into a combined quality 
   plot (in 'html' format), which you can download and view in a browser.<br>
@@ -377,7 +377,7 @@ cd /mnt/parscratch/users/$USER/my_project
 Once the script has finished running, the fastQC output will be in a 'raw_fastqc' folder. The MultiQC reports will 
 be placed in a folder called 'quality_reports', which you can download to view the contents in a browser. There will 
 be two MultiQC plots, one for the R1 reads for all your samples ('Raw_data_R1_multiqc_report.html') and one for the
-R2 reads (Raw_data_R2_multiqc_report.html). View and consider these reports when considering your strategy for cleaning 
+R2 reads ('Raw_data_R2_multiqc_report.html'). View and consider these reports when considering your strategy for cleaning 
 (filtering and trimming) your data.
 
   
@@ -387,7 +387,7 @@ For most data sets, you'll likely see:
 - The R2 reads have poorer quality than the R1 reads
 - The read sizes have a range compared to all being one size. However, most of the reads are towards the long end of the range.
 
-Generally, even if data is looking good we would carry out quality control to get rid of any poor data that is masked
+Generally, even if the data look good we would carry out quality control to get rid of any poor data that is masked
 by the very good data and to remove any adapter sequences. In the next step, we'll carry out quality control on our fastq files.
 <br>
 <br>
@@ -403,8 +403,9 @@ To carry this out, we will use [Trimmomatic](http://www.usadellab.org/cms/index.
 
   
 <br>
-To run Trimmomatic we will use the '03_trimmomatic.sh' script. This has many optional parameters you can use for filtering and trimming your data. 
-By default this script assumes you have paired end data and the the quality is encoded using *phred33* (typical for most Illumina data).
+To run Trimmomatic, we will use the '03_trimmomatic.sh' script. This has many optional parameters you can use for filtering and trimming your data. 
+By default this script assumes you have paired end data and the the quality is encoded using *phred33* qualityscoring (typical 
+for most Illumina data).
 <br>
 
 <b>The command line arguments you must supply are:</b><br>
@@ -426,16 +427,15 @@ By default this script assumes you have paired end data and the the quality is e
 
 More details of the optional parameters can be found below or in the Trimmomatic [manual](http://www.usadellab.org/cms/index.php?page=trimmomatic)
   
-  - ILLUMINACLIP: These settings are used to find and remove Illumina adapters. First, a fasta file of known adapter sequences is given, followed by the number of mismatches allowed between the adapter and read sequence and then thresholds for how accurate the alignment is between the adapter and read sequence. The fasta file of adapter sequences ('TruSeq3-PE-2.fa') is provided in your downloaded 'scripts' folder.
-  - SLIDINGWINDOW: This specifies to scan the read quality over a 4 bp window, cutting when the average quality drops below the specified phred score.
+  - ILLUMINACLIP: These settings are used to find and remove Illumina adapters. First, a fasta file of known adapter sequences is given, followed by the number of mismatches allowed between the adapter and read sequence and then thresholds for how accurate the alignment is between the adapter and read sequence. The fasta file of standard Illumina adapter sequences ('TruSeq3-PE-2.fa') is provided in your downloaded 'scripts' folder.
+  - SLIDINGWINDOW: This specifies to scan the read quality over a given size window (4 bases in the example below), cutting when the average quality drops below the specified phred score (Q30 below).
   - LEADING: The minimum quality value required to keep a base at the start of the read.
   - TRAILING: The minimum quality value required to keep a base at the end of the read.
   - CROP: Cut the read to a specified length.
   - HEADCROP: Cut the specified number of bases from the start of the read.
   - MINLEN: This specifies the minimum length of a read to keep; any reads shorter than the specified length are discarded.
     <br><br>
-An example of how to run Trimmomatic can be found below. The parameters provided are fairly standard quality thresholds. You are welcome to try these,
-evaluate how your data are filtered and then consider other parameters.
+An example of how to run Trimmomatic can be found below. The parameters provided are fairly standard quality thresholds. You are welcome to try these, evaluate how your data are filtered and then consider other parameters.
  
 <br><br>
  
@@ -448,9 +448,7 @@ evaluate how your data are filtered and then consider other parameters.
  -T TRAILING:3
  ``` 
 <br>
-When the script has finished running the trimmed data will be in a 'trimmed' folder. Each sample will have now be represented by four files. There will 
-be paired R1 and R2 read files, for the R1 and R2 reads that remained paired after filtering and trimming, and unpaired R1 and R2 files for those R1 
-and R2 reads, where only one of the pair remained after filtering. For our analyses, we will use the reads that are still paired.<br> 
+When the script has finished running the trimmed data will be in a 'trimmed' folder. Each sample will have now be represented by four files. There will be paired R1 and R2 read files, for the R1 and R2 reads that remained paired after filtering and trimming, and unpaired R1 and R2 files for those R1 and R2 reads, where only one of the pair remained after filtering. For our analyses, we will use the reads that are still paired.<br> 
 
 <br>
 <br>
