@@ -156,7 +156,7 @@ $HOME/.bash_profile
   squeue --me
   ```
 
-  The job will then receive the allocated resources, the task will run, and the appropriate output files generated 
+  The job will then receive the allocated resources, the task will run, and the appropriate output files will be generated 
   (inlcuding output and error logs). In the following workflow, the output from a particular step is the input for 
   the next step. **IMPORTANT:** You'll need to wait for each job to finish before submitting the next. It is also
   **important** to check the error and output logs after each step/job (before launching the next job) to see whether 
