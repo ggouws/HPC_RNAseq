@@ -80,7 +80,7 @@
   You should see that the command prompt has changed from
 
   ```
-  [<user>@login2 [stanage] ~]$
+  [<user>@login1 [stanage] ~]$
   ```
   to
   ```
@@ -94,7 +94,7 @@
   <br>
   
   The Genomics Software Repository contains several pre-loaded pieces of software
-  and environments useful for a range of genomics analyses, including this one.
+  and environments useful for a range of genomic analyses, including this one.
   
   Type:
   
@@ -109,6 +109,7 @@
   ```
 
   If so, you are set up and do not need to do the following step.
+  
   If not, enter the following:
   
   ```
