@@ -240,10 +240,10 @@ $HOME/.bash_profile
 
   ```
   cp -r /mnt/parscratch/users/bi1gg_shared/your_project_data/* /mnt/parscratch/users/$USER/my_project/raw_data/
-  # The source directory is an example; the precise location will be provided
+  # The source directory is an example; the precise location will be provided to you
   ```
   
-  If you have downloaded your (or other) data to your personal computer, you'll need to transfer this to the HPC. 
+  If you have downloaded your data to your personal computer, you'll need to transfer this to the HPC. 
   You can download the data generated through NEOF using the links ('wget' links) and resources that CGR provide. 
   Please be sure that you download the raw data. Links will be provided to download trimmed data, but since you 
   will be doing your own QC, you'll have greater flexibility when you have access to the raw data. To transfer data 
@@ -307,7 +307,7 @@ cd /mnt/parscratch/users/$USER/my_project
   
   If the reference genome or transcriptome you intend to use is available on NCBI, we will use the 
   '01_reference_download.sh' script to download it. This script creates a directory ('reference') 
-  in '/fastdata/$USER/my_project' in which to place the reference genome/transcriptome. It uses the 
+  in '/mnt/parscratch/users/$USER/my_project' in which to place the reference genome/transcriptome. It uses the 
   NCBI-datasets tool to download it, unpacks the downloaded '.zip' file and tidies the output, 
   leaving the genome/transcriptome ('.fna' or '.fasta' file) and the annotation ('.gff' or 'gff3') 
   file, if available.
