@@ -28,7 +28,7 @@ helpFunction()
    exit 1 # Exit script after printing help
 }
 
-# ILLUMINACLIP: Cut adapter and other illumina-specific sequences from the read.
+#ILLUMINACLIP: Cut adapter and other illumina-specific sequences from the read.
 #SLIDINGWINDOW: Perform a sliding window trimming, cutting once the average quality within the window falls below a threshold.
 #LEADING: Cut bases off the start of a read, if below a threshold quality
 #TRAILING: Cut bases off the end of a read, if below a threshold quality
@@ -70,7 +70,7 @@ mkdir $src/trimmed
 for f in $src/raw_data/*$parameterF;
 do FBASE=$(basename $f)
 	BASE=${FBASE%$parameterF}
-	/usr/local/community/Genomics/apps/mambaforge/envs/trimmomatic/bin/trimmomatic PE -threads 4 -phred33 \
+	trimmomatic PE -threads 4 -phred33 \
 	$src/raw_data/${BASE}$parameterF \
 	$src/raw_data/${BASE}$parameterR \
 	$src/trimmed/${BASE}_trimmed_paired_R1.fastq.gz \
