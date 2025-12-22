@@ -10,7 +10,7 @@
 #SBATCH --time=72:00:00
 
 source ~/.bash_profile
-conda activate trimmomatic
+conda activate rnaseq
 
 helpFunction()
 {
