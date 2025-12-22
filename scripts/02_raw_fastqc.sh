@@ -61,3 +61,7 @@ mkdir $src/quality_reports
 mv $src/raw_fastqc/fastqc_F/multiqc/multiqc_report.html $src/quality_reports/Raw_data_R1_multiqc_report.html
 mv $src/raw_fastqc/fastqc_R/multiqc/multiqc_report.html	$src/quality_reports/Raw_data_R2_multiqc_report.html
 
+cd $src/raw_data
+for file in *R1*.fastq.gz; do echo -en $file "\t"; echo "$(zcat $file| wc -l)"/4 | bc; done > $src/quality_reports/raw_read_counts.txt
+
+
