@@ -377,7 +377,8 @@ cd /mnt/parscratch/users/$USER/my_project
 Once the script has finished running, the fastQC output will be in a 'raw_fastqc' folder. The MultiQC reports will 
 be placed in a folder called 'quality_reports', which you can download to view the contents in a browser. There will 
 be two MultiQC plots, one for the R1 reads for all your samples ('Raw_data_R1_multiqc_report.html') and one for the
-R2 reads ('Raw_data_R2_multiqc_report.html'). View and consider these reports when considering your strategy for cleaning 
+R2 reads ('Raw_data_R2_multiqc_report.html'). In addition, the script will produce a tab-delimited text file, 'raw_read_couts.txt',
+indicating the number of raw reads for each sample. View and consider these reports when considering your strategy for cleaning 
 (filtering and trimming) your data.
 
   
@@ -466,7 +467,7 @@ sbatch scripts/04_clean_fastqc.sh
 
 When the script is finished running, the fastQC output and reports will be in a 'clean_fastqc' folder. The two MultiQC html reports
 ('Clean_data_R1_multiqc_report.html' and 'Clean_data_R2_multiqc-report.html') will be in the 'quality_reports' folder for you to 
-download and examine.
+download and examine. The number of trimmed read pairs for each sample is included in a tab-delimited text file ('trimmed_read_count.txt').
 
 If you are satisfied with the quality and amount of data (number of reads) retained, you can proceed with your analysis.
 If not, you can return to the Trimmomatic step, changing the parameters and repeating the quality control.
