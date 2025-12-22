@@ -32,6 +32,6 @@ done
 
 multiqc $src/clean_fastqc/fastqc_R -o $src/clean_fastqc/fastqc_R/multiqc
 
-mv $src/clean_fastqc/fastqc_F/multiqc/multiqc_report_1.html $src/quality_reports/Clean_data_R1_multiqc_report.html
-mv $src/clean_fastqc/fastqc_R/multiqc/multiqc_report_1.html $src/quality_reports/Clean_data_R2_multiqc_report.html
+mv $src/clean_fastqc/fastqc_F/multiqc/multiqc_report.html $src/quality_reports/Clean_data_R1_multiqc_report.html
+mv $src/clean_fastqc/fastqc_R/multiqc/multiqc_report.html $src/quality_reports/Clean_data_R2_multiqc_report.html
 
