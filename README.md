@@ -351,7 +351,7 @@ cd /mnt/parscratch/users/$USER/my_project
   <font size="4"><b>5.1) Raw data quality assessment</b></font>
   <br>
  
-  Our first analytical tasks are to investigate the quality of our sequence data and the fastq files, and then perform
+  Our first analytical tasks are to investigate the quality of the sequence data in our fastq files, and then perform
   quality filtering and trimming, such that high quality data remain for mapping and quantifying.
   
   First, you'll need to run the script to generate the quality plots of the raw data. This script
