@@ -36,5 +36,5 @@ mv $src/clean_fastqc/fastqc_F/multiqc/multiqc_report.html $src/quality_reports/C
 mv $src/clean_fastqc/fastqc_R/multiqc/multiqc_report.html $src/quality_reports/Clean_data_R2_multiqc_report.html
 
 cd $src/trimmed
-for file in *paired_R1*.fastq.gz; do echo -en $file "\t"; echo "$(zcat $file| wc -l)"/4 | bc; done > $src/quality_reports/trimmed_read_counts.txt
+for file in *_paired_R1*.fastq.gz; do echo -en $file "\t"; echo "$(zcat $file| wc -l)"/4 | bc; done > $src/quality_reports/trimmed_read_counts.txt
 
