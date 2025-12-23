@@ -6,7 +6,7 @@
 #SBATCH --nodes=1
 #SBATCH --ntasks-per-node=1
 #SBATCH --cpus-per-task=1
-#SBATCH --mem-per-cpu=12GB
+#SBATCH --mem-per-cpu=4GB
 #SBATCH --time=48:00:00
 
 source ~/.bash_profile
