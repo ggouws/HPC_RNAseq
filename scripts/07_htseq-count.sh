@@ -17,7 +17,7 @@ helpFunction()
   echo ""
   echo "Usage: $0 -m parameterM -s parameterS -t parameterT -i parameterI -r parameterR -A parameterA -X parameterX"
   echo -e "\t-m mode for handling reads overlapping more than one genomic feature"
-  echo -e "\t-s indication of whether the data are stranded ('yes') or not ('no')"
+  echo -e "\t-s indication of whether the data are stranded ('yes') or not ('no'), or whether reverse reads need to be mapped to the alternate strand ('reverse')"
   echo -e "\t-t the feature to be used (e.g., gene or exon)"
   echo -e "\t-i GFF attribute used to identify the feature"
   echo -e "\t-r alignment sorted by read name ('name') or alignment position ('pos')"
