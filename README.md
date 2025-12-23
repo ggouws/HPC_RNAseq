@@ -6,7 +6,7 @@
     style="left; margin-right: 10px;" />
 <br>
 <br>
-## Basic RNAseq pipeline [WORK IN PROGRESS]
+## Basic RNAseq pipeline for Stanage [WORK IN PROGRESS]
 <br>
 <font size="4">
 <details><summary><font size="6"><b>1) About, credits, and other information</b></font></summary>
