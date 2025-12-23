@@ -598,9 +598,11 @@ If so, we can now proceed to quantifying our transcriptomic reads!
     introns or mapping to multiple genes). The options available are "union" (the most commonly used mode; for
     reads spanning an intron), "intersection-strict" and "intersection-nonempty". There is a useful illustration
     [here](https://htseq.readthedocs.io/en/release_0.11.1/count.html) to show the use and impact of the different modes.
-  - -s: Whether the data are stranded ("yes") or not ("no"). This refers to whether your data/sequence reads are in a
-    particular orientation. There is more information [here](https://chipster.csc.fi/manual/library-type-summary.html).
-    This will depend on your library preparation.
+  - -s: This sets the strandedness parameter and depends on whether your library was prepared with a strand-specific approach
+    or not. If your data are not stranded ("no"), reads will be considered as overlapping with a feature whether it is in the
+    same strand or the opposite one. If your data are stranded ("yes"), it will only overlap with the same strand as the feature,
+    and the other read of the pair with the other strand. "Reverse" will do the inverse. There is more information
+    [here](https://chipster.csc.fi/manual/library-type-summary.html).
   - -t: The feature type that you want to quantify, typically genes ("gene" or "CDS", depending on the annotation) or exons
     ("exon"). The features that can be quantified are named in the third column of your ('.gff') annotation file.
   - -i: The GFF attribute that you want to use as a feature ID. This is what is used to identify the counts in the tables
