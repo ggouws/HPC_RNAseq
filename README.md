@@ -612,7 +612,7 @@ If so, we can now proceed to quantifying our transcriptomic reads!
     The preceding scripts sort the files by position, but you may have data that have been sorted by name. 
   <br>
 There are other features in htseq_count that may be relevant for your data set and analysis. Please consult the [documentation](https://htseq.readthedocs.io/en/latest/htseqcount.html) and advise the NEOF Bioinformatics Team, should you need to implement any of these.
-
+<br>
 The script will be launched as such:
   <br>  
   <br> 
