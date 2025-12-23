@@ -65,5 +65,5 @@ htseq-count \
 -r "$parameterR" \
 -f bam \
 "$src/aligned_clean/${BASE}.clean.bam" "$src/reference/"$parameterA"*"$parameterX" > \
-"$src/htseq/${BASE}_"$parameterT"count.htseq";
+"$src/htseq/${BASE}_"$parameterT"_count.htseq";
 done
