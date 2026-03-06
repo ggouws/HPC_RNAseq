@@ -471,12 +471,12 @@ If you are satisfied with the quality and amount of data (primarily the number o
 your analysis. If not, you can return to the Trimmomatic step, changing the parameters and repeating the quality control
 until you are ready to proceed.
 
-When you are, there are two broad approaches one can take, largely depending on the genomic resources available (whether 
-you have a genome or transcriptome to map to, and access to a detailed annotation). In the first instance, one can quantify 
-reads using a reference- and annotation-free approach, such as Kallisto. Alternatively, one can map to the reference 
-genome/transcriptome and quantify transcripts against annotation features, using tools such as HISAT2 and htseq-count. 
-The latter approach is included below as the main workflow. However, should you wish to use Kallisto, a script is available 
-in this repository and some explanation is provided further below.
+When you are, there are two broad approaches one can take, largely depending on the genomic resources available - 
+specifically a detailed structural annotation. In the first instance, one can quantify reads using an annotation-free 
+approach, such as Kallisto. Alternatively, one can map to the reference genome/transcriptome and quantify transcripts 
+against annotation features, using tools such as HISAT2 and htseq-count. The latter approach is included below as the main 
+workflow. However, should you wish to use Kallisto, a script is available in this repository and some explanation is 
+provided further below (see Section 9).
 
  
   </details>
@@ -608,8 +608,7 @@ If so, we can now proceed to quantifying our transcriptomic reads!
     [here](https://htseq.readthedocs.io/en/release_0.11.1/count.html) to show the use and impact of the different modes.
   - -s: This sets the strandedness parameter and depends on whether your library was prepared with a strand-specific approach
     or not. If your data are not stranded ("no"), reads will be considered as overlapping with a feature whether it is in the
-    same strand or the opposite one. If your data are stranded ("yes"), it will only overlap with the same strand as the feature,
-    and the other read of the pair with the other strand. "Reverse" will do the inverse. There is more information
+    same strand or the opposite one. If your data are stranded ("yes"), it will only overlap with the same strand as the feature, and the other read of the pair with the other strand. "Reverse" will do the inverse. There is more information
     [here](https://chipster.csc.fi/manual/library-type-summary.html).
   - -t: The feature type that you want to quantify, typically genes ("gene" or "CDS", depending on the annotation) or exons
     ("exon"). The features that can be quantified are named in the third column of your ('.gff') annotation file.
@@ -644,9 +643,9 @@ The script will be launched as such:
   Once the script has run, a counts file for each sample will be saved to a folder called 'htseq'. The file name will include
   the sample name and the feature counted, with the suffix "count.htseq". Each file has two columns - the first with the 
   feature name and the second with the read counts for that feature. Counts will also be presented for ambiguously-mapped 
-  features or for "no features", where the features aren't defined in the annotation file. Potentially, unaligned or alignments 
-  with poor quality can also be counted, but these should have zero counts, as we filtered our aligned BAM files.
-
+  features or for "no features", where the features aren't defined in the annotation file. Potentially, unaligned 
+  or alignments with poor quality can also be counted, but these should have zero counts, as we filtered our aligned BAM
+  files.
 
   Once completed, use a scp protocol, FileZilla or the download function in MobaXTerm to download the 'htseq' folder and all 
   the files to your local computer. The subsequent differential gene expression (DGE) analysis, using DESeq2, will be run
@@ -656,64 +655,36 @@ The script will be launched as such:
   </details>
   <br>
   
- <details><summary><font size="6"><b>8) NEXT STEP</b></font></summary>
+ <details><summary><font size="6"><b>9) Alternative quantification using Kallisto</b></font></summary>
   <br>
   <br>    
- <b> The next step is to clean the VCF so we retain only high quality SNP sites we can be confident in. The script applies the following filters:</b>
+If you did not have the genomic resources in terms of a detailed annotation to accomplish your quantification using the 
+above approach, you can quantify your reads using Kallisto. [Kallisto](https://pachterlab.github.io/kallisto/about) 
+is a very fast and efficient tool, which uses a pseudoalignment approach to determine the compatibility of reads with
+a target, rather than in intensive physical alignment. Following pseudoalignment, reads are quntified without reference to 
+genomic features in an annotation.
+	 
+To use Kallisto, we launch a Kallito script, as below. There are two arguments to provide when launching the script:</b><br>
+  - the accession number of your reference genome/transcriptome (-A)<br>
+  - the extension (e.g., 'fna' or 'fasta' of your reference genome/transcriptome (-X)<br>
  <br><br>  
+As above, the accession number, file names and extensions of your reference do not need not be complete, but should be
+informative and unique enough to identify the specific reference among multiple files in your 'reference' folder. Be
+careful when using hyphens (-) and underscores (_).
+<br><br>
   
- - Only biallelic SNPs are retained. 
- - It removes SNPs that are less than 250 bp from the start or end of a contig or chromosome.
- - It removes SNPs informed by less than a user specified number of reads, quality threshold and genotyped for less than a specified number of individuals.
- - Users pick a minimum allele frequency (MAF) below which variants will be removed, as these ones are difficult to tell apart from sequencing errors.
- - Sites are removed if the average genotype depth (across individuals) is greater than X times the average genotype depth (considering all sites), where X is a user specified number number.
- - To keep only the most diverse SNP sites we also filter to keep only sites which have called at least one individual that is homozygous for the reference, one that is homozygous for the alternate and one heterozygous individual.
- - Sites are removed if they are highly correlated and adjacent to one another, based on a user-defined correlation coefficient and sliding window length.
-  
-  The user then specifies how many SNPs they want to randomly extract from the VCF to take forward for primer design.
-  <br><br>  
-  
- <b> You must supply the command line with the 10 following parameters:</b>
- <br>
-  
- - (-o) the name you want to call your VCF, this should match the name you specified in the previous step,
- - (-g) the name of the genome which was used to align the data,
- - (-r) minimum depth needed to retain a SNP site,
- - (-q) the minimum quality threshold for a SNP to be retained (all SNPs with a lower quality score will be excluded,
- - (-i) the minimum number of individuals typed to retain a SNP,
- - (-m) the minimum allele frequency,
- - (-a) a multiplier; sites will be excluded when the average genotype depth (per site) is more than this number times greater than the average genotype depth (considering all sites),
- - (-c) the correlation coefficient R2; sites with an R2 above this value (within a certain window) will be removed, 
- - (-w) the window for assessing correlation between sites; it can be set to a number of sites with an interger alone, or base pairs by adding bp, kb, or Mb after an integer (without any space),
- - (-n) number of SNPs to subsample for primer design; it is advisiable to extract more (up to a third more) than will ultimately be needed for the final genotyping,
-  <br>
-  <br>
-  
-  ```
-  qsub scripts/09_filter_vcf.sh -o monkparakeet -g GCA_017639245.1_MMon_1.0_genomic.fna \
-  -r 3 -q 20 -i 3 \
-  -m 0.3 \
-  -a 2 \
-  -c 0.2 -w 5kb \
-  -n 108 
-  ```
-  <br>
-  Intermediate filtering files will be written to your 'vcf' folder and final files for primer design will be in a folder titled 'primer_design'.
-  <br>
-  
-  <br>
-  We recommend looking at the output log ('09_filter_vcf.out.log'). Following each filter, an explanation of the filter, a file name and the total number of remaining SNPs are printed to the log, providing an indication of drop out at each stage. We expect to see a fairly large reduction in the number of SNPs at most stages, but after the final filter (eexclusion of correlated adjacent SNPs) there will hopefully still be several thousand SNPs to choose from. 
-  <br>
-  
-  <br>
-  If the number of SNPs following filtering is less than the subsampling number (-n), subsampling will fail. The log file will produce an error indicating this. If the number of SNPs following filtering is less than two times greater than the subsampling number (-n), subsampling will proceed, but the output log will give a warning and suggest that the user should inspect drop out and relax some filters. The error file (09_filter_vcf.err.log) may provide further information if troubleshooting is required.
-  
-  
-  </details>
-  <br>    
+   <br>
  
- 
- <details><summary><font size="6"><b>9) NEXT STEP </b></font></summary>
+  ```   
+ sbatch scripts/08_kallisto.sh -A GCA_017639245 -X fna.gz
+  ```  
+
+This will pseudoalign your cleaned (QCed) read data against the reference and quantify. Once it is run, all the output will be placed in a 'kallisto' directory. For each sample, there should be three files output files:
+ - A tab-delimited abundance file, '$Sample_abundance.tsv'. This table lists the estimate counts of your transcripts against the feature in the reference (genes in the transcriptome or contigs, scaffolds or chromosomes in a genome), along with the length of the feature, the effective length of your pseudoaligned transcripts, and the total per million (tpm).
+ - A '$Sample_info.json' file contains the run parameters and information for each sample.
+ - An 'abundance.h5' file for each sample will be placed in a '$Sample_output' directory. This is a binary file containing run information, abundance esimates, bootstraps and transcript lengths. For the most part, this can be ignored. The pertinent information is in the other two files.
+ -  
+ <details><summary><font size="6"><b>10) Downstream Differential Expression analysis, functional annotatation and enrichment analysis</b></font></summary>
   <br>
   <br>    
   
