@@ -6,7 +6,7 @@
     style="left; margin-right: 10px;" />
 <br>
 <br>
-## Basic RNAseq pipeline for Stanage [WORK IN PROGRESS]
+## Basic RNAseq pipeline for Stanage
 <br>
 <font size="4">
 <details><summary><font size="6"><b>1) About, credits, and other information</b></font></summary>
@@ -20,7 +20,7 @@
   expression, using standard tools, as introduced in the NEOF RNAseq, Differential Gene Expression and 
   Pathway Analysis workshop. Details of the workshop can be found [here](https://neof.org.uk/training/). 
 
-  This pipeline closley follows the approach and workflow developed for the above workshop by Katy Maher, Helen 
+  This pipeline closely follows the approach and workflow developed for the above workshop by Katy Maher, Helen 
   Hipperson, Ewan Harney, Steve Paterson, Bert Overduin, Matthew Gemmell and Xuan Liu. It also relies substantially 
   on scripts developed by Katy Maher. Use and referencing of this repository implicitly acknowledges these contributions.
 
@@ -28,9 +28,9 @@
   published or publically-available reference genome or transcriptome with (preferably) a high level of annotation.
 
   This protocol has been written for use with the University of Sheffield's
-  [Stanage](https://docs.hpc.shef.ac.uk/en/latest/stanage/index.html#gsc.tab=0) HPC system, but should be applicable to 
-  any GNU/Linux-based HPC system, with appropriate environments, software installations and modification. Your mileage 
-  may vary.
+  [Stanage](https://docs.hpc.shef.ac.uk/en/latest/stanage/index.html#gsc.tab=0) high-performance computing (HPC) 
+  system, but should be applicable to any GNU/Linux-based HPC system, with appropriate environments, software 
+  installations and modification. Your mileage may vary.
 
   Code which the user (that's you) must run is highlighted in a code block like this:
   ```
@@ -49,7 +49,7 @@
 
   '/home/user/a_file_path'
   <br><br>
- Contact: Gavin Gouws //  g.gouws@sheffield.ac.uk
+ Contact: Gavin Gouws //  gavingouws@gmail.com
   </details>
 <br>
 <details><summary><font size="6"><b>2) Getting started on the HPC.</b></font></summary>
@@ -58,9 +58,8 @@
   <font size="4"><b>2.1) Access the HPC</b></font>
   <br>
 	
-  To access the Stanage high-performance computer (HPC) you must be connected
-  to the university network - this can be achieved remotely by using the
-  virtual private network (VPN) service.
+  To access the Stanage HPC you must be connected securely to the university network - this can 
+  be achieved remotely by using the virtual private network (VPN) service.
 
   Please see the university IT pages for details on how to [connect to the VPN](https://students.sheffield.ac.uk/it-services/vpn).
 
@@ -157,8 +156,8 @@ $HOME/.bash_profile
   ```
 
   The job will then receive the allocated resources, the task will run, and the appropriate output files will be generated 
-  (inlcuding output and error logs). In the following workflow, the output from a particular step is the input for 
-  the next step. **IMPORTANT:** You'll need to wait for each job to finish before submitting the next. It is also
+  (inlcuding output and error logs). In the following workflow, the output from a particular step is generally the input
+  for the next step. **IMPORTANT:** You'll need to wait for each job to finish before submitting the next. It is also
   **important** to check the error and output logs after each step/job (before launching the next job) to see whether 
   it has completed properly or if there were issues or failures.
   
@@ -173,7 +172,7 @@ $HOME/.bash_profile
 
   As well as running the standardised scripts there are some parameters which will be unique to your project or data. 
   For example, these might be your file extensions, the name of your reference genome or the filtering parameters you
-  want to implement for QC.<br>
+  want to implement for quality control (QC).<br>
   <br>
 
   To run a script with these extra parameters (termed 'arguments') we supply them on the command line with a 'flag'.
@@ -215,7 +214,7 @@ $HOME/.bash_profile
   You'll now need to create a new subdirectory in which you will do all your work. It is called 'my_project' in the
   commands below, but you are welcome to name it as you see fit. You'll also need to create a subdirectory within 
   'my_project', called 'raw_data', to receive your data. All other subdirectories needed will be created when running
-  the scripts. Create this directory structure as follows (using or renaming 'my_project'):
+  the scripts. Create this directory structure as follows (either using or renaming 'my_project'):
   
   ```
   mkdir -p /mnt/parscratch/users/$USER/my_project/raw_data
@@ -229,7 +228,7 @@ $HOME/.bash_profile
   transcriptome.
   <br>
   <br>
-  <font size="4"><b>3.3) Load required RNA sequence data onto the HPC</b></font>
+  <font size="4"><b>3.3) Load required RNA/transcriptomic sequence data onto the HPC</b></font>
   <br>
   
   If you have generated the data through NEOF, the NEOF team will download and archive your data as soon as 
@@ -289,12 +288,12 @@ $HOME/.bash_profile
   <br>
   
  
- <details><summary><font size="6"><b>4)  Download reference genome or transcriptome</b></font></summary>
+ <details><summary><font size="6"><b>4)  Download the reference genome or transcriptome</b></font></summary>
  <br>
   <br>
   
   Now that we have set up the HPC and have our data, we need to source and add the reference genome 
-  or transcriptome. 
+  or transcriptome, and related annotations. 
   <br>
 
   Remember that all scripts are launched from and work is done in our primary working directory 
@@ -377,16 +376,16 @@ cd /mnt/parscratch/users/$USER/my_project
 Once the script has finished running, the fastQC output will be in a 'raw_fastqc' folder. The MultiQC reports will 
 be placed in a folder called 'quality_reports', which you can download to view the contents in a browser. There will 
 be two MultiQC plots, one for the R1 reads for all your samples ('Raw_data_R1_multiqc_report.html') and one for the
-R2 reads ('Raw_data_R2_multiqc_report.html'). In addition, the script will produce a tab-delimited text file, 'raw_read_counts.txt',
-indicating the number of raw read pairs for each sample. View and consider these reports when considering your strategy for cleaning 
-(filtering and trimming) your data.
+R2 reads ('Raw_data_R2_multiqc_report.html'). In addition, the script will produce a tab-delimited text file, 
+'raw_read_counts.txt', indicating the number of raw read pairs for each sample. View and consider these reports when 
+considering your strategy for cleaning (filtering and trimming) your data.
 
   
 For most data sets, you'll likely see:
 
 - The quality decreases towards the end of the reads
 - The R2 reads have poorer quality than the R1 reads
-- The read sizes have a range compared to all being one size. However, most of the reads are towards the long end of the range.
+- Depending on the library preparation the reads may have a range of sizes have a range compared to all being one size. Most should be towards the long end of the range.
 
 Generally, even if the data look good we would carry out quality control to get rid of any poor data that is masked
 by the very good data and to remove any adapter sequences. In the next step, we'll carry out quality control on our fastq files.
@@ -405,8 +404,7 @@ To carry this out, we will use [Trimmomatic](http://www.usadellab.org/cms/index.
   
 <br>
 To run Trimmomatic, we will use the '03_trimmomatic.sh' script. This has many optional parameters you can use for filtering and trimming your data. 
-By default this script assumes you have paired end data and the the quality is encoded using *phred33* qualityscoring (typical 
-for most Illumina data).
+By default this script assumes you have paired end data and the the quality is encoded using *phred33* quality scoring (typical for most Illumina data).
 <br>
 
 <b>The command line arguments you must supply are:</b><br>
@@ -428,8 +426,8 @@ for most Illumina data).
 
 More details of the optional parameters can be found below or in the Trimmomatic [manual](http://www.usadellab.org/cms/index.php?page=trimmomatic)
   
-  - ILLUMINACLIP: These settings are used to find and remove Illumina adapters. First, a fasta file of known adapter sequences is given, followed by the number of mismatches allowed between the adapter and read sequence and then thresholds for how accurate the alignment is between the adapter and read sequence. The fasta file of standard Illumina adapter sequences ('TruSeq3-PE-2.fa') is provided in your downloaded 'scripts' folder.
-  - SLIDINGWINDOW: This specifies to scan the read quality over a given size window (4 bases in the example below), cutting when the average quality drops below the specified phred score (Q30 below).
+  - ILLUMINACLIP: These settings are used to find and remove Illumina adapters. First, a fasta file of known adapter sequences is given, followed by the number of mismatches allowed between the adapter and read sequence and then thresholds for how accurate the alignment is between the adapter and read sequence. A fasta file of standard Illumina adapter sequences ('TruSeq3-PE-2.fa') is provided in your downloaded 'scripts' folder.
+  - SLIDINGWINDOW: This specifies to scan the read quality over a given size window (4 bases in the example below), cutting when the average quality drops below the specified phred score (Q30 in the example below).
   - LEADING: The minimum quality value required to keep a base at the start of the read.
   - TRAILING: The minimum quality value required to keep a base at the end of the read.
   - CROP: Cut the read to a specified length.
@@ -456,8 +454,7 @@ When the script has finished running the trimmed data will be in a 'trimmed' fol
 <font size="4"><b>5.3) Trimmed data quality assessment</b></font>
 <br>
  
-Now that we have run Trimmomatic, we can check how successful our quality control has been by running fastQC and MultiQC on the 
-cleaned data, as per the command below:<br>
+Now that we have run Trimmomatic, we can check how successful our quality control has been by running fastQC and MultiQC on the cleaned data, as per the command below:<br>
 <br> 
 
 ```   
@@ -465,16 +462,27 @@ sbatch scripts/04_clean_fastqc.sh
 ```   
 <br><br>
 
-When the script is finished running, the fastQC output and reports will be in a 'clean_fastqc' folder. The two MultiQC html reports
-('Clean_data_R1_multiqc_report.html' and 'Clean_data_R2_multiqc-report.html') will be in the 'quality_reports' folder for you to 
-download and examine. The number of trimmed read pairs for each sample is included in a tab-delimited text file ('trimmed_read_counts.txt').
+When the script is finished running, the fastQC output and reports will be in a 'clean_fastqc' folder. The two MultiQC html 
+reports ('Clean_data_R1_multiqc_report.html' and 'Clean_data_R2_multiqc-report.html') will be in the 'quality_reports' 
+folder for you to download and examine. The number of trimmed read pairs for each sample is included in a tab-delimited text 
+file ('trimmed_read_counts.txt').
 
-If you are satisfied with the quality and amount of data (number of reads) retained, you can proceed with your analysis.
-If not, you can return to the Trimmomatic step, changing the parameters and repeating the quality control.
-  
+If you are satisfied with the quality and amount of data (primarily the number of reads) retained, you can proceed with
+your analysis. If not, you can return to the Trimmomatic step, changing the parameters and repeating the quality control
+until you are ready to proceed.
+
+When you are, there are two broad approaches one can take, largely depending on the genomic resources available (whether 
+you have a genome or transcriptome to map to, and access to a detailed annotation). In the first instance, one can quantify 
+reads using a reference- and annotation-free approach, such as Kallisto. Alternatively, one can map to the reference 
+genome/transcriptome and quantify transcripts against annotation features, using tools such as HISAT2 and htseq-count. 
+The latter approach is included below as the main workflow. However, should you wish to use Kallisto, a script is available 
+in this repository and some explanation is provided further below.
+
+ 
   </details>
   <br>
-  
+
+
  <details><summary><font size="6"><b>6) Align short reads to the reference genome/transcriptome</b></font></summary>
   <br>
   <br>  
