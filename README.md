@@ -659,31 +659,30 @@ The script will be launched as such:
   <br>
   <br>    
 If you did not have the genomic resources in terms of a detailed annotation to accomplish your quantification using the 
-above approach, you can quantify your reads using Kallisto. [Kallisto](https://pachterlab.github.io/kallisto/about) 
-is a very fast and efficient tool, which uses a pseudoalignment approach to determine the compatibility of reads with
-a target, rather than in intensive physical alignment. Following pseudoalignment, reads are quntified without reference to 
-genomic features in an annotation.
+above approach, you can quantify your reads using [Kallisto](https://pachterlab.github.io/kallisto/about). This  
+is a very fast and efficient tool, which uses a pseudo-alignment approach to determine the compatibility of reads with
+a target, rather than an intensive physical alignment. Following pseudo-alignment, reads are quantified without reference to 
+genomic features in an annotation. </b><br>
 	 
 To use Kallisto, we launch a Kallito script, as below. There are two arguments to provide when launching the script:</b><br>
   - the accession number of your reference genome/transcriptome (-A)<br>
   - the extension (e.g., 'fna' or 'fasta' of your reference genome/transcriptome (-X)<br>
- <br><br>  
+<br>
 As above, the accession number, file names and extensions of your reference do not need not be complete, but should be
 informative and unique enough to identify the specific reference among multiple files in your 'reference' folder. Be
 careful when using hyphens (-) and underscores (_).
 <br><br>
-  
-   <br>
  
   ```   
  sbatch scripts/08_kallisto.sh -A GCA_017639245 -X fna.gz
   ```  
 
-This will pseudoalign your cleaned (QCed) read data against the reference and quantify. Once it is run, all the output will be placed in a 'kallisto' directory. For each sample, there should be three files output files:
+This will index the reference, pseudo-align your trimmed (QCed) read data against the reference and quantify your 
+transcripts. Once it is run, superfluous output will be cleaned and all relevant output will be placed in a 'kallisto' directory. For each sample, there should be two output files:
  - A tab-delimited abundance file, '$Sample_abundance.tsv'. This table lists the estimate counts of your transcripts against the feature in the reference (genes in the transcriptome or contigs, scaffolds or chromosomes in a genome), along with the length of the feature, the effective length of your pseudoaligned transcripts, and the total per million (tpm).
  - A '$Sample_info.json' file contains the run parameters and information for each sample.
- - An 'abundance.h5' file for each sample will be placed in a '$Sample_output' directory. This is a binary file containing run information, abundance esimates, bootstraps and transcript lengths. For the most part, this can be ignored. The pertinent information is in the other two files.
- -  
+
+ 
  <details><summary><font size="6"><b>10) Downstream Differential Expression analysis, functional annotatation and enrichment analysis</b></font></summary>
   <br>
   <br>    
