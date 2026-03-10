@@ -584,7 +584,7 @@ If so, we can now proceed to quantifying our transcriptomic reads!
   </details>
   <br>
   
- <details><summary><font size="6"><b>8) Counting reads</b></font></summary>
+ <details><summary><font size="6"><b>8) Quantifying reads/transcripts</b></font></summary>
   <br>
   <br>   
    
