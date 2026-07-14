@@ -687,63 +687,7 @@ transcripts. Once it is run, superfluous output will be cleaned and all relevant
   <br>
   <br>    
   
-  We are now ready to prepare the file needed for primer design for the Fluidigm D3 design portal. The D3 User Guide Instructions can be downloaded [here](https://d3.standardbio.com/account/login).
-  
-  <br> 
-  
-  To make the files you need [R](https://www.r-project.org) and [R Studio](https://posit.co/download/rstudio-desktop/) installed on your computer. 
-  
-  <br> 
-  
-  Once these are installed download the two files in the 'primer_design' directory onto your computer and the script '10_make_primer_file.R'.
-  You can then use the '10_make_primer_file.R' script to make the final output file for SNP design. 
-  <br>
-  
-  Follow the instructions contained in the R script to update the names of your files. 
-  <br> 
-  
-  You should now be ready to submit the final file for primer design.
-  
-  </details>
-  <br>  
- 
- <details><summary><font size="6"><b>10) NEXT STEP</b></font></summary>
-  <br>
-  <br>  
-    
-   First make an account for the [D3 design portal](https://d3.standardbio.com/account/login).
-   
-   <br> 
-   I recommend you read through the D3 User Guide you downloaded in the previous step. The key steps are summarised below.
-   
-   - Log into your account on the D3 portal 
-   - click `+ NEW PANEL`
-   - `SNP Type™ Assays - for SNP genotyping` -> `NEXT`
-   - `New Panel` -> `NEXT`
-   - `Others (Others - none - none)` -> `NEXT`
-   - `No SNP Masking` -> `NEXT`
-   - `Panel Properties - Panel Name`: Give your panel a sensible name -> `FINISH`
-   - Click `FILE UPLOAD` -> `DOWNLOAD TEMPLATE`
-   - Open the downloaded file in excel and select the tab at the bottom titled `Targets by Sequence`. Add the name and sequence details from the file you generated in R in the step above to this tab and then save this tab as a text file.
-   - Back on the `FILE UPLOAD` page -> `choose file` and select the file you just saved
-   - Click `IMPORT`
-   - Select the tick box at the top left next to 'Target' column and then click `SUBMIT FOR DESIGN`
- <br><br>   
- 
- Once submitted you will get an email when the primers are designed. 
+  These next steps will on your own laptop using R and R studio. Please talk to Katy Maher for further information on the next steps.
  <br>
  
- On the `REVIEW DESIGN` tab you now archive any targets that failed primer design ('Not Designable'), 'Nonstandard', or are surplus to your required number of SNPs.
  
- To do this check the blue tick box to the left of the 'Targets' you wish to remove and then click archive. 
- 
- When you are happy with the sites you have selected click on the QUOTE button in the top right.
- - `PLATE LAYOUT` -> `Default`
- - `REQUEST QUOTE`
- - Leave `Promotion Code\Blanket PO#` and `Comments` fields blank
- - `Volume (SNP Type)` -> click the dropdown menu and select the volume of primer you want to order 
- - Click `REQUEST QUOTE`.
- 
- <br>
- 
- You will then get an email when your quote is ready and can proceed to order. Please talk to/email Rachel Tucker (r.tucker@sheffield.ac.uk) for help with ordering.
